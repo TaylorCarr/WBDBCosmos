@@ -1,24 +1,932 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Mkr-qQ-LI0">
+    <device id="ipad12_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Nav Controller-->
+        <scene sceneID="CNv-To-1gL">
+            <objects>
+                <navigationController id="Mkr-qQ-LI0" customClass="NavController" customModule="WBDB3" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="oLr-RQ-LOx">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="50"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="hSn-Ch-k8j"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jco-pj-bra" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-547" y="59"/>
+        </scene>
+        <!--Filter Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <viewController storyboardIdentifier="FilterController" id="BYZ-38-t0r" customClass="FilterController" customModule="WBDB3" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="FilterView" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tlE-gP-75j" userLabel="WheelView">
+                                <rect key="frame" x="0.0" y="322" width="1024" height="1024"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="genresView" translatesAutoresizingMaskIntoConstraints="NO" id="W9z-kx-gK2">
+                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1024"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bWc-N2-i5m" userLabel="All">
+                                                <rect key="frame" x="211" y="686" width="150" height="150"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ALL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OQj-gH-0Kg" userLabel="Genre0 Label">
+                                                        <rect key="frame" x="0.0" y="29" width="150" height="30"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="25"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="allgenresIcon" translatesAutoresizingMaskIntoConstraints="NO" id="dmn-PD-koV">
+                                                        <rect key="frame" x="50" y="67" width="50" height="50"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" name="wbblue"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="Uky-Vf-41e" appends="YES" id="dY4-74-his"/>
+                                                    <outletCollection property="gestureRecognizers" destination="jJA-SR-ff4" appends="YES" id="GZl-Gs-OjC"/>
+                                                </connections>
+                                            </view>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="Genres" translatesAutoresizingMaskIntoConstraints="NO" id="9Rz-fh-8d9">
+                                                <rect key="frame" x="417" y="475" width="150" height="150"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="GENRES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8pY-x1-HG8">
+                                                        <rect key="frame" x="0.0" y="60.396216338284376" width="150" height="34"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="25"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="Action" translatesAutoresizingMaskIntoConstraints="NO" id="I24-io-G1A">
+                                                <rect key="frame" x="104" y="475" width="150" height="150"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ACTION" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDm-NA-Hh1">
+                                                        <rect key="frame" x="0.0" y="27" width="150" height="34.000000000000114"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="25"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="actionIcon" translatesAutoresizingMaskIntoConstraints="NO" id="8Db-ca-ZLi">
+                                                        <rect key="frame" x="50" y="69" width="50" height="50"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" name="wbblue"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="bHS-Cl-QZf" appends="YES" id="j6N-6O-Inl"/>
+                                                    <outletCollection property="gestureRecognizers" destination="cIs-Sm-syf" appends="YES" id="I8Y-0i-mWT"/>
+                                                </connections>
+                                            </view>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="Comedy" translatesAutoresizingMaskIntoConstraints="NO" id="bSq-2y-yPg">
+                                                <rect key="frame" x="654" y="475" width="150" height="150"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="COMEDY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ADz-nS-3Ba">
+                                                        <rect key="frame" x="0.0" y="40" width="150" height="34.000000000000114"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="25"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="comedyIcon" translatesAutoresizingMaskIntoConstraints="NO" id="f2n-mr-xgj">
+                                                        <rect key="frame" x="50" y="82" width="49.999999999999886" height="49.999999999999972"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" name="wbblue"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="3E7-Hf-j1x" appends="YES" id="4UJ-K1-7yg"/>
+                                                    <outletCollection property="gestureRecognizers" destination="aDc-t6-kwT" appends="YES" id="xvm-6c-YZf"/>
+                                                </connections>
+                                            </view>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="Drama" translatesAutoresizingMaskIntoConstraints="NO" id="53X-1a-UF7">
+                                                <rect key="frame" x="417" y="745" width="150" height="150"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="DRAMA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sj8-0l-hIZ">
+                                                        <rect key="frame" x="0.0" y="43" width="150" height="21"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="25"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dramaIcon" translatesAutoresizingMaskIntoConstraints="NO" id="dV5-Au-5ZP">
+                                                        <rect key="frame" x="50" y="72" width="49.999999999999886" height="50"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" name="wbblue"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="azX-N2-rro" appends="YES" id="I9I-fe-Y1J"/>
+                                                    <outletCollection property="gestureRecognizers" destination="l7l-2c-fI8" appends="YES" id="Q7Z-e3-4YT"/>
+                                                </connections>
+                                            </view>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="Horror" translatesAutoresizingMaskIntoConstraints="NO" id="ll3-Ui-2r6">
+                                                <rect key="frame" x="417" y="161" width="150" height="150"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="HORROR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HE6-il-rZK">
+                                                        <rect key="frame" x="0.0" y="41" width="150" height="33.999999999999993"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="25"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="horrorIcon" translatesAutoresizingMaskIntoConstraints="NO" id="i1L-Cf-wH2">
+                                                        <rect key="frame" x="50" y="83" width="50" height="50"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" name="wbblue"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="ELY-nT-p3B" appends="YES" id="fLW-jh-3LX"/>
+                                                    <outletCollection property="gestureRecognizers" destination="WI4-Jl-L0M" appends="YES" id="O70-Vd-EEQ"/>
+                                                </connections>
+                                            </view>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KPU-8J-XFm" userLabel="Sci-fi">
+                                                <rect key="frame" x="593" y="662" width="150" height="150"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SCI-FI" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FPy-bq-8iB" userLabel="Genre6 Label">
+                                                        <rect key="frame" x="0.0" y="43" width="150" height="29.999999999999943"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="25"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="scifiIcon" translatesAutoresizingMaskIntoConstraints="NO" id="z0C-to-CEI">
+                                                        <rect key="frame" x="50" y="81" width="50" height="49.999999999999972"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" name="wbblue"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="uFY-gp-NQ4" appends="YES" id="zlc-bB-gfg"/>
+                                                    <outletCollection property="gestureRecognizers" destination="IuT-Bs-5BA" appends="YES" id="QMB-Fz-zr3"/>
+                                                </connections>
+                                            </view>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tap-Dj-BcD" userLabel="Thriller">
+                                                <rect key="frame" x="515" y="319" width="150" height="150"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="THRILLER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tPs-tk-cpy" userLabel="Genre5 Label">
+                                                        <rect key="frame" x="0.0" y="40" width="150" height="29.999999999999943"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="25"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="thrillerIcon" translatesAutoresizingMaskIntoConstraints="NO" id="hCD-o9-Myi">
+                                                        <rect key="frame" x="50" y="78" width="50.000000000000114" height="49.999999999999986"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" name="wbblue"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="qbo-Vg-Cq1" appends="YES" id="ui4-C5-zDV"/>
+                                                    <outletCollection property="gestureRecognizers" destination="Uad-aT-07g" appends="YES" id="w9h-cO-43z"/>
+                                                </connections>
+                                            </view>
+                                        </subviews>
+                                        <gestureRecognizers/>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="regionsView" translatesAutoresizingMaskIntoConstraints="NO" id="vAW-q3-67T">
+                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1024"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <view opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="RegionView" translatesAutoresizingMaskIntoConstraints="NO" id="Dfb-YX-S83">
+                                                <rect key="frame" x="137" y="291" width="150" height="150"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TERRITORY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZz-TQ-0EP">
+                                                        <rect key="frame" x="0.0" y="66.92884232366373" width="150" height="20.999999999999858"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="25"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="USView" translatesAutoresizingMaskIntoConstraints="NO" id="d8d-Wx-DLu">
+                                                <rect key="frame" x="20" y="274" width="150" height="150"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="FR CR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8R-EJ-9Oz">
+                                                        <rect key="frame" x="0.0" y="58.335958091295197" width="150" height="33.999999999999986"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="25"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" name="wbblue"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="NoT-j0-kbI" appends="YES" id="SvO-ON-cHz"/>
+                                                    <outletCollection property="gestureRecognizers" destination="CUi-Fm-xUL" appends="YES" id="Oto-5y-Lcr"/>
+                                                    <outletCollection property="gestureRecognizers" destination="87l-Lj-RUq" appends="YES" id="xfT-h4-ylS"/>
+                                                </connections>
+                                            </view>
+                                            <view opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="EUView" translatesAutoresizingMaskIntoConstraints="NO" id="4z0-ZF-i3w">
+                                                <rect key="frame" x="58" y="439" width="150" height="150"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="GSE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5iG-WM-vWB">
+                                                        <rect key="frame" x="0.0" y="56.339895228270507" width="150" height="40.999999999999915"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="25"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" name="wbblue"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="8PV-rL-l5w" appends="YES" id="1JC-Gh-9IJ"/>
+                                                    <outletCollection property="gestureRecognizers" destination="OUL-Pw-dP2" appends="YES" id="nMk-4k-Bb8"/>
+                                                    <outletCollection property="gestureRecognizers" destination="LfK-i6-kKA" appends="YES" id="pvR-ZE-X6G"/>
+                                                </connections>
+                                            </view>
+                                            <view opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="CAView" translatesAutoresizingMaskIntoConstraints="NO" id="ILl-wX-lUl">
+                                                <rect key="frame" x="417" y="475" width="150" height="150"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="LATAM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nYn-SF-8Xn">
+                                                        <rect key="frame" x="0.0" y="55.628463070504267" width="150" height="41.000000000000007"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="25"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" name="wbblue"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="fPc-0e-z0u" appends="YES" id="7Ot-Rf-1Ju"/>
+                                                    <outletCollection property="gestureRecognizers" destination="eKp-9b-j3d" appends="YES" id="pR1-Aa-wV6"/>
+                                                    <outletCollection property="gestureRecognizers" destination="J6y-mG-ehR" appends="YES" id="oj7-mF-cZ1"/>
+                                                </connections>
+                                            </view>
+                                            <view opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="SAView" translatesAutoresizingMaskIntoConstraints="NO" id="dRW-Ri-A9Q">
+                                                <rect key="frame" x="256" y="439" width="150" height="150"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <label opaque="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SPAIN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kp7-l9-4GX">
+                                                        <rect key="frame" x="0.0" y="60.191674170200258" width="150" height="33.999999999999972"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="25"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" name="wbblue"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="csQ-ai-3RP" appends="YES" id="NwV-og-ZOc"/>
+                                                    <outletCollection property="gestureRecognizers" destination="bvg-Ea-Wfq" appends="YES" id="Cox-OU-dE4"/>
+                                                </connections>
+                                            </view>
+                                            <view opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="AsiaView" translatesAutoresizingMaskIntoConstraints="NO" id="hbu-3L-bKn">
+                                                <rect key="frame" x="274" y="250" width="150" height="150"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ASIA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5YA-m9-bgP">
+                                                        <rect key="frame" x="0.0" y="67.001968568466054" width="150" height="20.999999999999986"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="25"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" name="wbblue"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="6qP-1j-2Bk" appends="YES" id="loi-4M-V7Z"/>
+                                                    <outletCollection property="gestureRecognizers" destination="5VE-LD-kmP" appends="YES" id="7nA-7J-mLK"/>
+                                                </connections>
+                                            </view>
+                                            <view opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="OceanicView" translatesAutoresizingMaskIntoConstraints="NO" id="qXb-nT-fw4">
+                                                <rect key="frame" x="20" y="106" width="150" height="150"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="OCEANA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PWG-GG-Vbo">
+                                                        <rect key="frame" x="0.0" y="66.183799896227924" width="150" height="20.999999999999929"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="25"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" name="wbblue"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="cfL-bN-6Oh" appends="YES" id="Lhn-UT-Z46"/>
+                                                    <outletCollection property="gestureRecognizers" destination="vpk-pz-B1p" appends="YES" id="AUN-5F-afE"/>
+                                                </connections>
+                                            </view>
+                                        </subviews>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="channelView" translatesAutoresizingMaskIntoConstraints="NO" id="CiE-m9-ask">
+                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1024"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="PPV" translatesAutoresizingMaskIntoConstraints="NO" id="ZAu-i0-EOa">
+                                                <rect key="frame" x="372" y="486" width="150" height="150"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="BASIC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Jy-iL-uyj">
+                                                        <rect key="frame" x="0.0" y="67.118547925398161" width="150" height="21"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="25"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" name="wbblue"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="GD7-dE-2Oe" appends="YES" id="o0a-Mz-fwt"/>
+                                                    <outletCollection property="gestureRecognizers" destination="ts9-uq-jHg" appends="YES" id="Yjv-pb-A7U"/>
+                                                </connections>
+                                            </view>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="Distribution" translatesAutoresizingMaskIntoConstraints="NO" id="PCh-li-4rW">
+                                                <rect key="frame" x="417" y="475" width="150" height="150"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MEDIA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sLh-XQ-ZFk">
+                                                        <rect key="frame" x="0.0" y="58.822105809213099" width="150" height="34.000000000000114"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="25"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="Premium" translatesAutoresizingMaskIntoConstraints="NO" id="Ec6-ww-VWx">
+                                                <rect key="frame" x="417" y="475" width="150" height="150"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PREMIUM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EeC-iC-EDr">
+                                                        <rect key="frame" x="0.0" y="58.822105809214008" width="150" height="34"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="25"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" name="wbblue"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="jGs-uh-oCS" appends="YES" id="ZJH-tG-7zC"/>
+                                                    <outletCollection property="gestureRecognizers" destination="pTM-zz-uie" appends="YES" id="QU2-SE-o0o"/>
+                                                </connections>
+                                            </view>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="Public" translatesAutoresizingMaskIntoConstraints="NO" id="9Fm-jD-pPy">
+                                                <rect key="frame" x="417" y="475" width="150" height="150"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="FREE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="krq-NC-W4L">
+                                                        <rect key="frame" x="0.0" y="58.822105809214008" width="150" height="34"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="25"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" name="wbblue"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="aoa-b4-ZdS" appends="YES" id="btf-cz-rNu"/>
+                                                    <outletCollection property="gestureRecognizers" destination="t2y-19-dZV" appends="YES" id="mry-Eb-57i"/>
+                                                </connections>
+                                            </view>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="OD" translatesAutoresizingMaskIntoConstraints="NO" id="O8D-nF-55x">
+                                                <rect key="frame" x="417" y="475" width="150" height="150"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="VOD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0g6-UW-Vuc">
+                                                        <rect key="frame" x="0.0" y="65.525663693029401" width="150" height="21.000000000000114"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="25"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" name="wbblue"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="fpR-5g-GaT" appends="YES" id="4Iv-ld-zW2"/>
+                                                    <outletCollection property="gestureRecognizers" destination="Yha-OQ-STv" appends="YES" id="PtG-nd-DXq"/>
+                                                </connections>
+                                            </view>
+                                        </subviews>
+                                        <gestureRecognizers/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="tlE-gP-75j" secondAttribute="height" multiplier="1:1" id="2f2-8B-b24"/>
+                                    <constraint firstAttribute="width" constant="1024" id="ZF7-22-b6X"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hge-I6-VRd" userLabel="UpperView">
+                                <rect key="frame" x="0.0" y="20" width="1024" height="294"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="PuN-D0-hv0">
+                                        <rect key="frame" x="48" y="40" width="928" height="179"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="elL-hd-OR0" userLabel="SelectionsStack">
+                                                <rect key="frame" x="0.0" y="0.0" width="928" height="179"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELECTIONS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kZb-Oa-ORn">
+                                                        <rect key="frame" x="0.0" y="0.0" width="928" height="29"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="24"/>
+                                                        <color key="textColor" name="wbblue"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="239" translatesAutoresizingMaskIntoConstraints="NO" id="iNU-KT-gj9" userLabel="Selections View">
+                                                        <rect key="frame" x="0.0" y="29" width="928" height="150"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fie-LV-WWi">
+                                                                <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TERRITORY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1Z-tU-sIW">
+                                                                        <rect key="frame" x="0.0" y="58.5" width="150" height="30"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="25"/>
+                                                                        <color key="textColor" name="wbblue"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <gestureRecognizers/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="150" id="Gwq-xx-vN1"/>
+                                                                    <constraint firstAttribute="height" constant="150" id="swY-IE-Mu0"/>
+                                                                    <constraint firstAttribute="width" secondItem="fie-LV-WWi" secondAttribute="height" multiplier="1:1" id="wG1-CO-SXa"/>
+                                                                </constraints>
+                                                                <connections>
+                                                                    <outletCollection property="gestureRecognizers" destination="uFU-Xw-gqK" appends="YES" id="FzW-lu-FJd"/>
+                                                                </connections>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VOn-VT-jzt">
+                                                                <rect key="frame" x="389" y="0.0" width="150" height="150"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MEDIA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1eT-hx-Q4u">
+                                                                        <rect key="frame" x="0.0" y="60.830659545732487" width="150" height="29.999999999999943"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                                                        <color key="textColor" name="wbblue"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <gestureRecognizers/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="150" id="SKq-8L-voq"/>
+                                                                    <constraint firstAttribute="height" constant="150" id="ciY-z3-3oM"/>
+                                                                    <constraint firstAttribute="width" secondItem="VOn-VT-jzt" secondAttribute="height" multiplier="1:1" id="mZJ-QZ-2n6"/>
+                                                                </constraints>
+                                                                <connections>
+                                                                    <outletCollection property="gestureRecognizers" destination="Jmc-39-X1g" appends="YES" id="4g9-67-N8Y"/>
+                                                                </connections>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b73-KZ-17u">
+                                                                <rect key="frame" x="778" y="0.0" width="150" height="150"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="GENRE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SZX-2N-81c">
+                                                                        <rect key="frame" x="-0.92592592589653577" y="60.375555555541268" width="150" height="31.499999999999886"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                                                        <color key="textColor" name="wbblue"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <gestureRecognizers/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="150" id="Xf0-TV-bj2"/>
+                                                                    <constraint firstAttribute="width" constant="150" id="Xxm-k1-qUR"/>
+                                                                </constraints>
+                                                                <connections>
+                                                                    <outletCollection property="gestureRecognizers" destination="v3D-JC-jCm" appends="YES" id="Haw-Sf-Nbw"/>
+                                                                </connections>
+                                                            </view>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="VOn-VT-jzt" firstAttribute="width" secondItem="fie-LV-WWi" secondAttribute="width" id="CQH-jQ-d6R"/>
+                                                            <constraint firstItem="VOn-VT-jzt" firstAttribute="height" secondItem="fie-LV-WWi" secondAttribute="height" id="X8I-B4-E8g"/>
+                                                            <constraint firstItem="b73-KZ-17u" firstAttribute="width" secondItem="fie-LV-WWi" secondAttribute="width" id="c7u-8j-C8j"/>
+                                                            <constraint firstItem="b73-KZ-17u" firstAttribute="height" secondItem="fie-LV-WWi" secondAttribute="height" id="cT8-PG-HH4"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="iNU-KT-gj9" firstAttribute="width" secondItem="PuN-D0-hv0" secondAttribute="width" id="ekr-pz-4e7"/>
+                                            <constraint firstItem="kZb-Oa-ORn" firstAttribute="width" secondItem="PuN-D0-hv0" secondAttribute="width" id="j74-Dq-Tbb"/>
+                                            <constraint firstItem="elL-hd-OR0" firstAttribute="width" secondItem="PuN-D0-hv0" secondAttribute="width" id="phe-pg-eFu"/>
+                                        </constraints>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c7r-IS-gHP">
+                                        <rect key="frame" x="48" y="220" width="928" height="19"/>
+                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="25"/>
+                                        <color key="textColor" name="wbblue"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iYP-6J-vzA" customClass="MultiSlider" customModule="WBDB3" customModuleProvider="target">
+                                        <rect key="frame" x="48" y="214" width="928" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="N42-rB-y3X"/>
+                                            <constraint firstAttribute="width" constant="928" id="uds-EL-Faf"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="PuN-D0-hv0" firstAttribute="top" secondItem="hge-I6-VRd" secondAttribute="top" constant="40" id="1XV-7M-mgx"/>
+                                    <constraint firstItem="c7r-IS-gHP" firstAttribute="trailing" secondItem="PuN-D0-hv0" secondAttribute="trailing" id="1hJ-oB-ZUs"/>
+                                    <constraint firstItem="iYP-6J-vzA" firstAttribute="width" secondItem="PuN-D0-hv0" secondAttribute="width" id="2dI-zq-JU7"/>
+                                    <constraint firstItem="c7r-IS-gHP" firstAttribute="top" secondItem="hge-I6-VRd" secondAttribute="top" constant="220" id="Lvg-3A-kPG"/>
+                                    <constraint firstAttribute="bottom" secondItem="c7r-IS-gHP" secondAttribute="bottom" constant="55" id="PVt-Rt-kAc"/>
+                                    <constraint firstAttribute="bottom" secondItem="iYP-6J-vzA" secondAttribute="bottom" constant="20" symbolic="YES" id="RjU-JC-gJ0"/>
+                                    <constraint firstAttribute="width" constant="1024" id="Snl-gv-3sc"/>
+                                    <constraint firstItem="c7r-IS-gHP" firstAttribute="width" secondItem="PuN-D0-hv0" secondAttribute="width" id="aS0-IS-UL0"/>
+                                    <constraint firstItem="c7r-IS-gHP" firstAttribute="centerX" secondItem="iYP-6J-vzA" secondAttribute="centerX" id="c06-Qa-TPF"/>
+                                    <constraint firstItem="c7r-IS-gHP" firstAttribute="leading" secondItem="PuN-D0-hv0" secondAttribute="leading" id="fyN-s9-LN4"/>
+                                    <constraint firstAttribute="trailing" secondItem="iYP-6J-vzA" secondAttribute="trailing" constant="48" id="gHv-eA-i8I"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" name="wbblue"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="hge-I6-VRd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="9KB-TB-RTq"/>
+                            <constraint firstItem="tlE-gP-75j" firstAttribute="top" secondItem="hge-I6-VRd" secondAttribute="bottom" constant="8" id="U6m-K1-7cl"/>
+                            <constraint firstItem="tlE-gP-75j" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="XKZ-Bo-v0Z"/>
+                            <constraint firstItem="tlE-gP-75j" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Zvh-vV-88b"/>
+                            <constraint firstItem="hge-I6-VRd" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="sMI-fk-5BR"/>
+                            <constraint firstItem="hge-I6-VRd" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" symbolic="YES" id="tv8-J0-lMY"/>
+                            <constraint firstItem="tlE-gP-75j" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="vCc-AE-QKT"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="tRb-rA-uY4"/>
+                    <connections>
+                        <outlet property="Asia" destination="hbu-3L-bKn" id="XPD-XV-VFU"/>
+                        <outlet property="CA" destination="ILl-wX-lUl" id="yYZ-jD-mjH"/>
+                        <outlet property="Distribution" destination="PCh-li-4rW" id="zp9-80-heZ"/>
+                        <outlet property="EU" destination="4z0-ZF-i3w" id="YeM-wZ-nJZ"/>
+                        <outlet property="Oceanic" destination="qXb-nT-fw4" id="DeF-WW-tsU"/>
+                        <outlet property="PPV" destination="ZAu-i0-EOa" id="IdC-97-Nz7"/>
+                        <outlet property="Premium" destination="Ec6-ww-VWx" id="Jav-9v-Sox"/>
+                        <outlet property="Public" destination="9Fm-jD-pPy" id="G54-fB-6rT"/>
+                        <outlet property="Region" destination="Dfb-YX-S83" id="WYc-78-YpD"/>
+                        <outlet property="SA" destination="dRW-Ri-A9Q" id="02v-eD-8hA"/>
+                        <outlet property="US" destination="d8d-Wx-DLu" id="Vka-jc-JDp"/>
+                        <outlet property="action" destination="I24-io-G1A" id="U3j-25-eKl"/>
+                        <outlet property="allGenres" destination="bWc-N2-i5m" id="xnL-uL-luZ"/>
+                        <outlet property="channelSelection" destination="VOn-VT-jzt" id="oNv-LU-gz6"/>
+                        <outlet property="channelsView" destination="CiE-m9-ask" id="a34-gb-6yy"/>
+                        <outlet property="comedy" destination="bSq-2y-yPg" id="TEe-z6-c7g"/>
+                        <outlet property="drama" destination="53X-1a-UF7" id="2Wk-cN-xNI"/>
+                        <outlet property="genre0Label" destination="OQj-gH-0Kg" id="xeU-Kn-5f1"/>
+                        <outlet property="genre1Label" destination="cDm-NA-Hh1" id="zpg-lv-dlb"/>
+                        <outlet property="genre2Label" destination="ADz-nS-3Ba" id="yia-9E-bj9"/>
+                        <outlet property="genre3Label" destination="sj8-0l-hIZ" id="mia-zk-hc1"/>
+                        <outlet property="genre4Label" destination="HE6-il-rZK" id="HZf-Jd-Zwb"/>
+                        <outlet property="genre5Label" destination="tPs-tk-cpy" id="1OZ-Tp-GG2"/>
+                        <outlet property="genre6Label" destination="FPy-bq-8iB" id="TPa-4p-JRj"/>
+                        <outlet property="genreSelection" destination="b73-KZ-17u" id="35s-OA-f7b"/>
+                        <outlet property="genreSelectionLabel" destination="SZX-2N-81c" id="YN8-LK-cZd"/>
+                        <outlet property="genres" destination="9Rz-fh-8d9" id="clD-GH-Ywt"/>
+                        <outlet property="genresView" destination="W9z-kx-gK2" id="Dnw-mN-VWh"/>
+                        <outlet property="horror" destination="ll3-Ui-2r6" id="8j5-48-s8t"/>
+                        <outlet property="media1Label" destination="7Jy-iL-uyj" id="qCf-9B-S2t"/>
+                        <outlet property="media2Label" destination="EeC-iC-EDr" id="dwE-Zt-UDJ"/>
+                        <outlet property="media3Label" destination="krq-NC-W4L" id="G6b-kb-vBO"/>
+                        <outlet property="media4Label" destination="0g6-UW-Vuc" id="Uwu-8z-YdS"/>
+                        <outlet property="mediaSelectionLabel" destination="1eT-hx-Q4u" id="Zdf-4f-BCv"/>
+                        <outlet property="onDemand" destination="O8D-nF-55x" id="dh2-cR-vAc"/>
+                        <outlet property="regionSelection" destination="fie-LV-WWi" id="UI6-wl-xnb"/>
+                        <outlet property="regionSelectionLabel" destination="a1Z-tU-sIW" id="ysC-gp-6jL"/>
+                        <outlet property="regionsView" destination="vAW-q3-67T" id="Nme-A5-kAK"/>
+                        <outlet property="scifi" destination="KPU-8J-XFm" id="Uw0-vq-V0g"/>
+                        <outlet property="selectionsView" destination="iNU-KT-gj9" id="tjh-qU-b3d"/>
+                        <outlet property="territory1Label" destination="E8R-EJ-9Oz" id="nf5-w7-BnC"/>
+                        <outlet property="territory2Label" destination="5iG-WM-vWB" id="lML-Ha-IEe"/>
+                        <outlet property="territory3Label" destination="nYn-SF-8Xn" id="0cK-OJ-eMF"/>
+                        <outlet property="territory4Label" destination="Kp7-l9-4GX" id="A2X-JR-Qgu"/>
+                        <outlet property="territory5Label" destination="5YA-m9-bgP" id="EaH-yG-qNL"/>
+                        <outlet property="territory6Label" destination="PWG-GG-Vbo" id="ovb-3s-r63"/>
+                        <outlet property="thriller" destination="tap-Dj-BcD" id="kxF-4U-QKK"/>
+                        <outlet property="timeFrameSlider" destination="iYP-6J-vzA" id="8L6-tl-3kS"/>
+                        <segue destination="VTy-wS-bc9" kind="show" identifier="showLoadingScreen" id="qaA-fJ-g5y"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="uFU-Xw-gqK" userLabel="RegionTapRecognizer">
+                    <connections>
+                        <action selector="selectRegion:" destination="BYZ-38-t0r" id="Mqv-X9-tpg"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="Jmc-39-X1g" userLabel="ChannelTapRecognizer">
+                    <connections>
+                        <action selector="selectChannel:" destination="BYZ-38-t0r" id="ubO-y0-0ok"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="v3D-JC-jCm" userLabel="GenreTapRecognizer">
+                    <connections>
+                        <action selector="selectGenre:" destination="BYZ-38-t0r" id="WnM-cI-7xh"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="NoT-j0-kbI" userLabel="USTapRecognizer">
+                    <connections>
+                        <action selector="USSelected:" destination="BYZ-38-t0r" id="yp9-CI-ZUx"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="CUi-Fm-xUL" userLabel="USPanRecognizer">
+                    <connections>
+                        <action selector="USPan:" destination="BYZ-38-t0r" id="Qah-zJ-lj4"/>
+                    </connections>
+                </panGestureRecognizer>
+                <tapGestureRecognizer id="8PV-rL-l5w" userLabel="EUTapRecognizer">
+                    <connections>
+                        <action selector="EUSelected:" destination="BYZ-38-t0r" id="gUV-SZ-1Fh"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="OUL-Pw-dP2" userLabel="EUPanRecognizer">
+                    <connections>
+                        <action selector="EUPan:" destination="BYZ-38-t0r" id="Ctn-It-GTA"/>
+                    </connections>
+                </panGestureRecognizer>
+                <tapGestureRecognizer id="J6y-mG-ehR" userLabel="CATapRecognizer">
+                    <connections>
+                        <action selector="CASelected:" destination="BYZ-38-t0r" id="gl7-M3-Yvx"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="fPc-0e-z0u" userLabel="CAPanRecognizer">
+                    <connections>
+                        <action selector="CAPan:" destination="BYZ-38-t0r" id="lF9-aQ-J0X"/>
+                    </connections>
+                </panGestureRecognizer>
+                <tapGestureRecognizer id="bvg-Ea-Wfq" userLabel="SATapRecognizer">
+                    <connections>
+                        <action selector="SASelected:" destination="BYZ-38-t0r" id="mf3-Ff-Veh"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="csQ-ai-3RP" userLabel="SAPanRecognizer">
+                    <connections>
+                        <action selector="SAPan:" destination="BYZ-38-t0r" id="HZ5-hf-cP7"/>
+                    </connections>
+                </panGestureRecognizer>
+                <tapGestureRecognizer id="5VE-LD-kmP" userLabel="AsiaTapRecognizer">
+                    <connections>
+                        <action selector="AsiaSelected:" destination="BYZ-38-t0r" id="S8G-G6-XIF"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="6qP-1j-2Bk" userLabel="AsiaPanRecognizer">
+                    <connections>
+                        <action selector="AsiaPan:" destination="BYZ-38-t0r" id="huB-3M-Xza"/>
+                    </connections>
+                </panGestureRecognizer>
+                <tapGestureRecognizer id="vpk-pz-B1p" userLabel="OceanicTapRecognizer">
+                    <connections>
+                        <action selector="OceanicSelected:" destination="BYZ-38-t0r" id="9Di-C3-eBb"/>
+                        <outlet property="delegate" destination="qXb-nT-fw4" id="bcu-hu-6iY"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="cfL-bN-6Oh" userLabel="OceanicPanRecognizer">
+                    <connections>
+                        <action selector="OceanicPan:" destination="BYZ-38-t0r" id="102-N5-AC5"/>
+                    </connections>
+                </panGestureRecognizer>
+                <tapGestureRecognizer id="GD7-dE-2Oe" userLabel="PPVTapRecognizer">
+                    <connections>
+                        <action selector="PPVSelected:" destination="BYZ-38-t0r" id="fnp-X1-NY3"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="ts9-uq-jHg" userLabel="PPVPanRecognizer">
+                    <connections>
+                        <action selector="PPVPan:" destination="BYZ-38-t0r" id="ZwV-Nh-Wx9"/>
+                    </connections>
+                </panGestureRecognizer>
+                <tapGestureRecognizer id="jGs-uh-oCS" userLabel="PremiumTapRecognizer">
+                    <connections>
+                        <action selector="premiumSelected:" destination="BYZ-38-t0r" id="p3i-Xq-ACH"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="pTM-zz-uie" userLabel="PremiumPanRecognizer">
+                    <connections>
+                        <action selector="premiumPan:" destination="BYZ-38-t0r" id="vun-I9-WsX"/>
+                    </connections>
+                </panGestureRecognizer>
+                <tapGestureRecognizer id="aoa-b4-ZdS" userLabel="PublicTapRecognizer">
+                    <connections>
+                        <action selector="publicSelected:" destination="BYZ-38-t0r" id="1R7-PO-8I0"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="t2y-19-dZV" userLabel="PublicPanRecognizer">
+                    <connections>
+                        <action selector="publicPan:" destination="BYZ-38-t0r" id="3ZW-Ha-PaI"/>
+                    </connections>
+                </panGestureRecognizer>
+                <tapGestureRecognizer id="Yha-OQ-STv" userLabel="OnDemandTapRecognizer">
+                    <connections>
+                        <action selector="onDemandSelected:" destination="BYZ-38-t0r" id="2jn-Vl-OK9"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="fpR-5g-GaT" userLabel="OnDemandPanRecognizer">
+                    <connections>
+                        <action selector="onDemandPan:" destination="BYZ-38-t0r" id="LXP-JG-FA6"/>
+                    </connections>
+                </panGestureRecognizer>
+                <tapGestureRecognizer id="bHS-Cl-QZf" userLabel="ActionTapRecognizer">
+                    <connections>
+                        <action selector="actionSelected:" destination="BYZ-38-t0r" id="w63-4P-I6F"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="cIs-Sm-syf" userLabel="ActionPanRecognizer">
+                    <connections>
+                        <action selector="actionPan:" destination="BYZ-38-t0r" id="rJl-wD-ESv"/>
+                    </connections>
+                </panGestureRecognizer>
+                <tapGestureRecognizer id="aDc-t6-kwT" userLabel="ComedyTapRecognizer">
+                    <connections>
+                        <action selector="comedySelected:" destination="BYZ-38-t0r" id="0xc-JQ-sQf"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="3E7-Hf-j1x" userLabel="ComedyPanRecognizer">
+                    <connections>
+                        <action selector="comedyPan:" destination="BYZ-38-t0r" id="RR9-IR-mjr"/>
+                    </connections>
+                </panGestureRecognizer>
+                <tapGestureRecognizer id="l7l-2c-fI8" userLabel="DramaTapRecognizer">
+                    <connections>
+                        <action selector="dramaSelected:" destination="BYZ-38-t0r" id="h0c-xp-Qpa"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="azX-N2-rro" userLabel="DramaPanRecognizer">
+                    <connections>
+                        <action selector="dramaPan:" destination="BYZ-38-t0r" id="KIm-0F-MBS"/>
+                    </connections>
+                </panGestureRecognizer>
+                <tapGestureRecognizer id="ELY-nT-p3B" userLabel="HorrorTapRecognizer">
+                    <connections>
+                        <action selector="horrorSelected:" destination="BYZ-38-t0r" id="6qx-Sx-9cD"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="WI4-Jl-L0M" userLabel="HorrorPanRecognizer">
+                    <connections>
+                        <action selector="horrorPan:" destination="BYZ-38-t0r" id="lXF-xy-5yb"/>
+                    </connections>
+                </panGestureRecognizer>
+                <tapGestureRecognizer id="jJA-SR-ff4" userLabel="AllGenresTapRecognizer">
+                    <connections>
+                        <action selector="allGenresSelected:" destination="BYZ-38-t0r" id="7eY-dZ-6dl"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="qbo-Vg-Cq1" userLabel="ThrillerTapRecognizer">
+                    <connections>
+                        <action selector="thrillerSelected:" destination="BYZ-38-t0r" id="Mfr-fD-hM6"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="uFY-gp-NQ4" userLabel="ScifiTapRecognizer">
+                    <connections>
+                        <action selector="scifiSelected:" destination="BYZ-38-t0r" id="i1v-nH-7zC"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="Uky-Vf-41e" userLabel="AllGenresPanRecognizer">
+                    <connections>
+                        <action selector="allGenresPan:" destination="BYZ-38-t0r" id="YeR-Ft-h3o"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="Uad-aT-07g" userLabel="ThrillerPanRecognizer">
+                    <connections>
+                        <action selector="thrillerPan:" destination="BYZ-38-t0r" id="YUi-m4-EYK"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="IuT-Bs-5BA" userLabel="ScifiPanRecognizer">
+                    <connections>
+                        <action selector="scifiPan:" destination="BYZ-38-t0r" id="0pG-Pm-xP0"/>
+                    </connections>
+                </panGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="LfK-i6-kKA" userLabel="EULongPressRecognizer">
+                    <connections>
+                        <action selector="EULongPress:" destination="BYZ-38-t0r" id="FP1-j9-8iJ"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="eKp-9b-j3d" userLabel="CALongPressRecognizer">
+                    <connections>
+                        <action selector="CALongPress:" destination="BYZ-38-t0r" id="WaK-Xe-QOp"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="87l-Lj-RUq" userLabel="USLongPressRecognizer">
+                    <connections>
+                        <action selector="USLongPress:" destination="BYZ-38-t0r" id="lUV-sE-3ta"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="260.7421875" y="58.857979502196187"/>
+        </scene>
+        <!--CalendarView-->
+        <scene sceneID="LTd-12-Rl3">
+            <objects>
+                <hostingController title="CalendarView" modalPresentationStyle="fullScreen" id="13o-Uq-rhn" customClass="CalendarController2" customModule="WBDB3" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="btO-Hq-GOw"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <segue destination="HK6-km-Qop" kind="show" identifier="showCartSegue" id="pUd-tA-5dV"/>
+                    </connections>
+                </hostingController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zZM-VY-nVa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1924" y="59"/>
+        </scene>
+        <!--Cart Controller-->
+        <scene sceneID="3jj-CQ-AiU">
+            <objects>
+                <hostingController id="HK6-km-Qop" customClass="CartController" customModule="WBDB3" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="4JO-Hk-ne8"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                </hostingController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="exe-0r-qX0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2855" y="59"/>
+        </scene>
+        <!--Loading Controller-->
+        <scene sceneID="ytP-hl-hu2">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="VTy-wS-bc9" customClass="LoadingController" customModule="WBDB3" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yLq-XQ-ThN">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="wblogo" translatesAutoresizingMaskIntoConstraints="NO" id="KbR-vY-2Ca">
+                                <rect key="frame" x="384.34217811201506" y="561.11808637063723" width="250" height="249.99999999999946"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" name="wbblue"/>
+                        <viewLayoutGuide key="safeArea" id="gmC-Wu-q1T"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="bWm-Ne-5l6"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="logoView" destination="KbR-vY-2Ca" id="GhD-gn-ZxD"/>
+                        <segue destination="13o-Uq-rhn" kind="showDetail" identifier="fromLoadingToCalendarSegue" id="ZhZ-BM-u7X"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pxm-W1-Ng1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1095" y="59"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="actionIcon" width="50" height="50"/>
+        <image name="allgenresIcon" width="50" height="50"/>
+        <image name="comedyIcon" width="50" height="50"/>
+        <image name="dramaIcon" width="50" height="50"/>
+        <image name="horrorIcon" width="50" height="50"/>
+        <image name="scifiIcon" width="50" height="50"/>
+        <image name="thrillerIcon" width="50" height="50"/>
+        <image name="wblogo" width="2000" height="2326"/>
+        <namedColor name="wbblue">
+            <color red="0.0" green="0.2627450980392157" blue="0.68235294117647061" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+    <color key="tintColor" name="wbblue"/>
 </document>
