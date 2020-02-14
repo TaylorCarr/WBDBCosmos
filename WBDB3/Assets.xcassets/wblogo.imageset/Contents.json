@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "warner_bros_logo_detail.png",
+      "filename" : "WB_Logo_Shield_Flat_Trans_RGB.png",
       "scale" : "1x"
     },
     {
@@ -19,6 +19,6 @@
     "author" : "xcode"
   },
   "properties" : {
-    "template-rendering-intent" : "original"
+    "template-rendering-intent" : "template"
   }
 }

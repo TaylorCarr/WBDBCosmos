@@ -19,9 +19,9 @@ struct StatsView: View {
     
     var body: some View {
         VStack {
-            Text(verbatim: "STATS").font(.largeTitle).fontWeight(.heavy).padding(.bottom, CGFloat(20))
+            Text(verbatim: "BOX OFFICE STATISTICS").font(.largeTitle).fontWeight(.heavy).padding(.bottom, CGFloat(20))
             Picker(selection: $statFilter, label: Text("Filter")) {
-                Text("REGION").tag(0)
+                Text("TERRITORY").tag(0)
                 Text("AGE").tag(1)
                 Text("GENDER").tag(2)
             }.pickerStyle(SegmentedPickerStyle())

@@ -14,6 +14,9 @@ class SecondViewHostingController: UIHostingController<CalendarView> {
     }
 }
 
+var screenWidth = UIScreen.main.bounds.width
+var screenHeight = UIScreen.main.bounds.height
+
 struct CalendarView_Previews: PreviewProvider {
     static var previews: some View {
         CalendarView()
@@ -95,20 +98,15 @@ func assignDates() {
     }
 }
 
-//var cart: [movies] = []
-//var sortedAsc = true
-
-//class globalCart: ObservableObject {
-//    @Published var cart: [movies] = []
-//}
-
 struct CalendarView: View {
     
-    @State var selectedTerm = 1
+    @State var selectedTerm = 2
     @State var showFilters = false
     @State var date: Date = Date()
     @State var dateTracker = Calendar.current
     @State var sortedAsc = true
+    @State var stateWidth = screenWidth
+    @State var stateHeight = screenHeight
     @EnvironmentObject var cartInstance: CartClass
     
     func sortArray() {
@@ -468,9 +466,12 @@ struct CalendarView: View {
                     Text("Month").tag(0)
                     Text("Quarter").tag(1)
                     Text("5 - Year").tag(2)
-                }.pickerStyle(SegmentedPickerStyle())
-                 .padding(.horizontal, CGFloat(100))
+                }
+            .pickerStyle(SegmentedPickerStyle())
+                .frame(width: (screenWidth * 0.9), alignment: .center)
+                 //.padding(.horizontal, CGFloat(100))
                 .padding(.vertical, CGFloat(10))
+                
             
             Divider()
             HStack {
@@ -488,9 +489,9 @@ struct CalendarView: View {
                         self.dateTracker = Calendar.current
                     }
                }) {
-                    Image("leftArrow").resizable().frame(width: 30, height: 30, alignment: .leading).foregroundColor(Color.black)
+                    Image("leftArrow").resizable().frame(width: 30, height: 30, alignment: .leading).foregroundColor(Color(UIColor.black))
                 }
-                Text(currentTerm()).frame(width: UIScreen.main.bounds.width - 200, height: 20, alignment: .center).animation(.spring())
+                Text(currentTerm()).frame(width: screenWidth - 200, height: 20, alignment: .center).animation(.spring())
                 
                 Button(action: {
                     if(self.selectedTerm == 0) {
@@ -507,7 +508,7 @@ struct CalendarView: View {
                         self.dateTracker = Calendar.current
                     }
                 }) {
-                    Image("rightArrow").resizable().frame(width: CGFloat(30), height: CGFloat(30), alignment: .trailing).foregroundColor(Color.black)
+                    Image("rightArrow").resizable().frame(width: CGFloat(30), height: CGFloat(30), alignment: .trailing).foregroundColor(Color(UIColor.black))
                 }
             }.padding(10)
                 .gesture(DragGesture()
@@ -547,61 +548,148 @@ struct CalendarView: View {
                         }
                     }
             ).padding(0)
-            Divider()
-            
-            HStack (spacing: 40){
-                Group {
-                    Text("").frame(width: CGFloat(30), height: CGFloat(30)).background(Color(UIColor(named: "wbblue")!))
-                    Text(verbatim: "Available").font(.headline).frame(width: UIScreen.main.bounds.width/8, height: CGFloat(50), alignment: .leading)
-                }
-                Group {
-                    Text("").frame(width: CGFloat(30), height: CGFloat(30), alignment: .center).background(Color.yellow)
-                    Text(verbatim: "Heldback").font(.headline).frame(width: UIScreen.main.bounds.width/8, height: CGFloat(50), alignment: .leading)//.padding(.trailing, CGFloat(35))
-                }
-                Group {
-                    Text("")
-                        .frame(width: CGFloat(30), height: CGFloat(30), alignment: .center)
-                        .background(Color.black)//.padding(.leading, CGFloat(35))
-                    Text(verbatim: "Sold")
-                        .font(.headline)
-                        .frame(width: UIScreen.main.bounds.width/8, height: CGFloat(50), alignment: .leading)
-                }
-            }.padding(.horizontal, 100).padding(.vertical, 0)
-            //.frame(width: CGFloat(900), height: CGFloat(50), alignment: .center)
+                .frame(width: screenWidth * 0.9, alignment: .center)
             if (self.selectedTerm == 0) {
                 Divider()
                 HStack {
+                    Text(verbatim: "").padding(5).frame(width: screenWidth * 0.16)
                     ForEach(0...3, id: \.self) { x in
                         Group {
                             Divider()
-                            Text(verbatim: "WEEK \(x + 1)".uppercased()).frame(width: CGFloat(185), height: CGFloat(30), alignment: .center)
+                            Text(verbatim: "WEEK \(x + 1)".uppercased()).frame(width: (screenWidth * 0.75)/CGFloat(4), height: CGFloat(30), alignment: .center)
                         }
                     }
-                }.frame(width: UIScreen.main.bounds.width-100, height: CGFloat(30), alignment: .trailing)
+                }.frame(width: screenWidth, height: CGFloat(30), alignment: .center).gesture(DragGesture()
+                .onEnded { value in
+                    if (value.translation.width > 0) {
+                        print("previous term")
+                        if(self.selectedTerm == 0) {
+                            self.date = self.dateTracker.date(byAdding: .month, value: -1, to: self.date)!
+                            self.dateTracker = Calendar.current
+                        }
+                        else if (self.selectedTerm == 1) {
+                            self.date = self.dateTracker.date(byAdding: .month, value: -3, to: self.date)!
+                            self.dateTracker = Calendar.current
+                        }
+                        else if (self.selectedTerm == 2) {
+                            self.date = self.dateTracker.date(byAdding: .year, value: -5, to: self.date)!
+                            self.dateTracker = Calendar.current
+                        }
+                        
+                    }
+                    else if (value.translation.width < 0) {
+                        print("next term")
+                        if(self.selectedTerm == 0) {
+                            
+                            self.date = self.dateTracker.date(byAdding: .month, value: 1, to: self.date)!
+                            self.dateTracker = Calendar.current
+                        }
+                        else if (self.selectedTerm == 1) {
+                            self.date = self.dateTracker.date(byAdding: .month, value: 3, to: self.date)!
+                            self.dateTracker = Calendar.current
+                            
+                        }
+                        else if (self.selectedTerm == 2) {
+                            self.date = self.dateTracker.date(byAdding: .year, value: 5, to: self.date)!
+                            self.dateTracker = Calendar.current
+                        }
+                    }
+                })
             }
             else if (self.selectedTerm == 1) {
+                //Spacer()
                 Divider()
                 HStack {
+                    Text(verbatim: "").padding(5).frame(width: screenWidth * 0.14)
                     ForEach(0...2, id: \.self) { x in
                         Group {
                             Divider()
-                            Text(DateFormatter().monthSymbols![self.dateTracker.component(.month, from: self.dateTracker.date(byAdding: .month, value: x, to: self.date)!) - 1].uppercased()).frame(width: CGFloat(255), height: CGFloat(30), alignment: .center)
+                            Text(DateFormatter().monthSymbols![self.dateTracker.component(.month, from: self.dateTracker.date(byAdding: .month, value: x, to: self.date)!) - 1].uppercased()).frame(width: (screenWidth * 0.75)/CGFloat(3), height: CGFloat(30), alignment: .center)
                         }
                     }
-                }.frame(width: UIScreen.main.bounds.width-100, height: CGFloat(30), alignment: .trailing)
+                }.frame(width: screenWidth, height: CGFloat(30), alignment: .center).gesture(DragGesture()
+                .onEnded { value in
+                    if (value.translation.width > 0) {
+                        print("previous term")
+                        if(self.selectedTerm == 0) {
+                            self.date = self.dateTracker.date(byAdding: .month, value: -1, to: self.date)!
+                            self.dateTracker = Calendar.current
+                        }
+                        else if (self.selectedTerm == 1) {
+                            self.date = self.dateTracker.date(byAdding: .month, value: -3, to: self.date)!
+                            self.dateTracker = Calendar.current
+                        }
+                        else if (self.selectedTerm == 2) {
+                            self.date = self.dateTracker.date(byAdding: .year, value: -5, to: self.date)!
+                            self.dateTracker = Calendar.current
+                        }
+                        
+                    }
+                    else if (value.translation.width < 0) {
+                        print("next term")
+                        if(self.selectedTerm == 0) {
+                            
+                            self.date = self.dateTracker.date(byAdding: .month, value: 1, to: self.date)!
+                            self.dateTracker = Calendar.current
+                        }
+                        else if (self.selectedTerm == 1) {
+                            self.date = self.dateTracker.date(byAdding: .month, value: 3, to: self.date)!
+                            self.dateTracker = Calendar.current
+                            
+                        }
+                        else if (self.selectedTerm == 2) {
+                            self.date = self.dateTracker.date(byAdding: .year, value: 5, to: self.date)!
+                            self.dateTracker = Calendar.current
+                        }
+                    }
+                })
             }
             else if (self.selectedTerm == 2) {
                 Divider()
                 HStack {
+                    Text(verbatim: "").padding(5).frame(width: screenWidth * 0.135)// alignment: .center)
                     ForEach(0...4, id: \.self) { x in
                         Group {
                             Divider()
-                            Text(String(self.dateTracker.component(.year, from: self.dateTracker.date(byAdding: .year, value: x, to: self.date)!)).uppercased()).frame(width: CGFloat(150), height: CGFloat(30), alignment: .center)
-                            
-                            
+                            Text(String(self.dateTracker.component(.year, from: self.dateTracker.date(byAdding: .year, value: x, to: self.date)!)).uppercased()).padding(0).frame(width: (screenWidth * 0.7)/CGFloat(5), height: CGFloat(30), alignment: .center)
                         }
                     }
-                }.frame(width: UIScreen.main.bounds.width-80, height: CGFloat(30), alignment: .trailing)
+                }.frame(width: screenWidth, height: CGFloat(30), alignment: .center).gesture(DragGesture()
+                .onEnded { value in
+                    if (value.translation.width > 0) {
+                        print("previous term")
+                        if(self.selectedTerm == 0) {
+                            self.date = self.dateTracker.date(byAdding: .month, value: -1, to: self.date)!
+                            self.dateTracker = Calendar.current
+                        }
+                        else if (self.selectedTerm == 1) {
+                            self.date = self.dateTracker.date(byAdding: .month, value: -3, to: self.date)!
+                            self.dateTracker = Calendar.current
+                        }
+                        else if (self.selectedTerm == 2) {
+                            self.date = self.dateTracker.date(byAdding: .year, value: -5, to: self.date)!
+                            self.dateTracker = Calendar.current
+                        }
+                        
+                    }
+                    else if (value.translation.width < 0) {
+                        print("next term")
+                        if(self.selectedTerm == 0) {
+                            
+                            self.date = self.dateTracker.date(byAdding: .month, value: 1, to: self.date)!
+                            self.dateTracker = Calendar.current
+                        }
+                        else if (self.selectedTerm == 1) {
+                            self.date = self.dateTracker.date(byAdding: .month, value: 3, to: self.date)!
+                            self.dateTracker = Calendar.current
+                            
+                        }
+                        else if (self.selectedTerm == 2) {
+                            self.date = self.dateTracker.date(byAdding: .year, value: 5, to: self.date)!
+                            self.dateTracker = Calendar.current
+                        }
+                    }
+                })
             }
             Divider()
             ScrollView(.vertical, showsIndicators: false) {
@@ -625,8 +713,23 @@ struct CalendarView: View {
                         Divider()
                     }
                 }.background(Color.clear)
-            }
-        }
+            }.simultaneousGesture(MagnificationGesture()
+                .onEnded{ value in
+                    if (value > 1) {
+                        if (self.selectedTerm > 0) {
+                            self.selectedTerm = self.selectedTerm - 1
+                            print(self.selectedTerm)
+                        }
+                    }
+                    else {
+                        if (self.selectedTerm < 2) {
+                            self.selectedTerm = self.selectedTerm + 1
+                            print(self.selectedTerm)
+                        }
+                    }
+                }
+            )
+        }.frame(width: stateWidth)
     }
 }
 
@@ -640,10 +743,11 @@ struct movieRow : View {
     @State var tempDate = Date()
     @State var statFilter = 0
     let arr = [1, 2, 3]
-    var color: [Color] = [Color(UIColor(named: "wbblue")!), Color.black, Color.yellow]
+//    var color: [Color] = [Color(UIColor.systemGreen), Color(UIColor.systemYellow), Color(UIColor.systemRed)]
     var label: String = "Available"
     @State var showPopover = false
     @EnvironmentObject var cartInstance: CartClass
+    //@State var string: String
     
     
     func calcBlocks(blocks: Int) -> Int {
@@ -657,20 +761,57 @@ struct movieRow : View {
             return 5
         }
     }
+    
+    func generateBlock() -> some View {
+        var string: String
+        let color: [Color] = [Color(UIColor.systemGreen), Color(UIColor.systemYellow), Color(UIColor.systemRed)]
+        let background = color.randomElement()
+        let licensee: [String] = ["Telepool GmbH Zurich","ProSiebenSat.1 Media SE"]
+        //var calcBlocks: Int
+        //var blocks: Int
+        
+        if (background == Color(UIColor.systemGreen)) {
+            string = "Available"
+        }
+        else if (background == Color(UIColor.systemYellow)) {
+            string = "Heldback"
+        }
+        else {
+            string = "Sold"
+        }
+        
+        return Text(string).frame(width: CGFloat((screenWidth * 0.79)/CGFloat(calcBlocks(blocks: blocks))), height: screenHeight * 0.03, alignment: .center).background(background).padding(CGFloat(0)).opacity(0.8)
+            .gesture(TapGesture()
+                .onEnded({
+                    if (string != "Available") {
+                        self.showPopover.toggle()
+                    }
+                })).alert(isPresented: self.$showPopover) {
+                    //StatusView()
+                    Alert(
+                        title: Text(string),
+                        message: Text("Deal ID: \(String(Int.random(in: 100000..<999999)))\nLicensee: \(licensee.randomElement()!)\nExclusivity: Exclusive"),
+                        dismissButton: Alert.Button.default(Text("Dismiss")))
+                    }
+    }
+
 
     var body: some View {
         return Group {
             HStack {
-                Image(uiImage: movie.poster!)
-                    .resizable()
-                    .frame(width: CGFloat(80), height: CGFloat(exactly: 120), alignment: .leading)
-                    .padding()
-                    .gesture(TapGesture()
-                        .onEnded({
-                            self.showExpandedTitle.toggle()
-                        })).sheet(isPresented: self.$showExpandedTitle, content: {
-                            expandTitle(showModal: self.$showExpandedTitle, title: self.movie).environmentObject(self.cartInstance)
-                        })
+                HStack {
+                    Image(uiImage: movie.poster!)
+                        .resizable()
+                    .padding(5)
+                        .frame(width: screenHeight * 0.07, height: screenHeight * 0.1, alignment: .leading)
+                }.padding(0)
+                .frame(width: screenWidth * 0.15, alignment: .center)
+                .gesture(TapGesture()
+                    .onEnded({
+                        self.showExpandedTitle.toggle()
+                    })).sheet(isPresented: self.$showExpandedTitle, content: {
+                        expandTitle(showModal: self.$showExpandedTitle, title: self.movie).environmentObject(self.cartInstance)
+                    })
             //When looking at the view we know where we are and what months we're looking at
             // We need to see if the movie.availDates[] has a sold or heldback rights hold for that time
             // ForEach (movie.availDates) {
@@ -682,53 +823,36 @@ struct movieRow : View {
             
                 VStack {
                     HStack {
-                        Text(movie.title.uppercased()).frame(width: UIScreen.main.bounds.width * CGFloat(0.65), alignment: .leading).font(.headline).padding()
+                        Text(movie.title.uppercased()).frame(width: screenWidth * CGFloat(0.7), height: screenHeight * 0.03, alignment: .leading).font(.headline).padding(5)
                         Button(action: {
-                            withAnimation(.easeInOut(duration: 4)){
+                            withAnimation(.easeInOut(duration: Double(4))){
                                 self.showTitleStats.toggle()
                             }
-                            
                         }) {
-                            Image(uiImage: UIImage(named: "stats")!).resizable().frame(width: CGFloat(25), height: CGFloat(25), alignment: .center).foregroundColor(Color(UIColor(named: "wbblue")!))
+                            Image(uiImage: UIImage(named: "stats")!).resizable().frame(width: screenHeight * 0.025, height: screenHeight * 0.025, alignment: .center).foregroundColor(Color(UIColor(named: "wbblue")!))
                         }.sheet(isPresented: self.$showTitleStats, content: {
                             StatsView()
                         })
+                    }.padding(0)
+                    .frame(width: screenWidth * CGFloat(0.80), alignment: .leading)
                         
-                    }.frame(width: UIScreen.main.bounds.width * CGFloat(0.80), alignment: .leading)
                     
                     Group {
                         HStack (spacing: 3){
                             ForEach(0..<calcBlocks(blocks: blocks), id: \.self) {_ in
-                                Text(verbatim: "").frame(width: CGFloat(800/self.calcBlocks(blocks: self.blocks)), height: CGFloat(40), alignment: .center)
-                                    .background(self.color.randomElement())
-                                    .padding(CGFloat(0))
-                                    .gesture(TapGesture()
-                                        .onEnded({
-                                            self.showPopover.toggle()
-                                    })).alert(isPresented: self.$showPopover) {
-                                            //StatusView()
-                                            Alert(
-                                                title: Text("Available/Sold/Heldback"),
-                                                message: Text("Deal ID: \nLicense: \nExclusivity: "),
-                                                dismissButton: Alert.Button.default(Text("Dismiss")))
-                                    }
-                                    //.popover(isPresented: self.$showPopover, arrowEdge: .top){
-//                                        ScrollView {
-//                                            StatusView().padding(.top, 50).frame(minWidth: CGFloat(250), idealWidth: CGFloat(50), maxWidth: .infinity, minHeight: CGFloat(100), idealHeight: CGFloat(100), maxHeight: .infinity, alignment: .topLeading)
-//                                        }
-//                                            VStack {
-//                                                StatusView().padding(.top, 50).frame(minWidth: CGFloat(250), idealWidth: CGFloat(50), maxWidth: .infinity, minHeight: CGFloat(100), idealHeight: CGFloat(100), maxHeight: .infinity, alignment: .topLeading)
-//                                            }
-                                        //}
-                                        
+                                self.generateBlock()
                             }
-                        }//.frame(self.expanded ? width: CGFloat(800), height: CGFloat(40), alignment: .center : width: CGFloat(800, height(80), alignment: .center))
-                    }}}.gesture(TapGesture()
-                        .onEnded({_ in
-                            self.movie.expanded.toggle()
-                            print("expansion selected in movieRow")
-                            //self.frame(width: UIScreen.main.bounds.width, height: CGFloat(80))
-                    }))}}}
+                        }
+                    }
+                }.frame(width: screenWidth * 0.8)
+            }.frame(width: screenWidth, height: screenHeight * 0.1)
+                .padding(0)
+                .gesture(TapGesture()
+                    .onEnded({_ in
+                        self.movie.expanded.toggle()
+                        print("expansion selected in movieRow")
+                        //self.frame(width: UIScreen.main.bounds.width, height: CGFloat(80))
+                }))}}}
 
 func blockBuilder(dates: [dates], movie: movies, date: Date, calendar: Calendar, color: Color, label: String) -> AnyView {
 

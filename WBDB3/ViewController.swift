@@ -14,13 +14,14 @@ import MultiSlider
 // MARK: Gloabl Variables
 var locations: [UIView: Int] = [:]
 var points: [CGPoint] = []
+var maxPoints = 360
 
 struct Global {
     var locations: [UIView: Int] = [:]
     
     func getCirclePoints(centerPoint point: CGPoint, radius: CGFloat, n: Int)->[CGPoint] {
-        let result: [CGPoint] = stride(from: 0.0, to: 360.0, by: Double(360 / n)).map {
-            let bearing = CGFloat($0) * .pi / 180
+        let result: [CGPoint] = stride(from: 0, to: maxPoints, by: maxPoints / n).map {
+            let bearing = CGFloat($0) * .pi / CGFloat(maxPoints/2)
             let x = (point.x - 80) + radius * cos(bearing)
             let y = (point.y - 50) + radius * sin(bearing)
             return CGPoint(x: x, y: y)
@@ -35,21 +36,21 @@ class FilterController: UIViewController {
     
     @IBAction func selectRegion(_ sender: UITapGestureRecognizer) {
         
-        UIView.transition(with: regionsView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+        UIView.transition(with: regionsView, duration: 0.4, options: .transitionCrossDissolve, animations: {
             self.changeToRegion()
         }, completion: nil)
         
     }
     @IBAction func selectChannel(_ sender: UITapGestureRecognizer) {
         
-        UIView.transition(with: channelsView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+        UIView.transition(with: channelsView, duration: 0.4, options: .transitionCrossDissolve, animations: {
             self.changeToChannel()
         }, completion: nil)
         
     }
     @IBAction func selectGenre(_ sender: UITapGestureRecognizer) {
         
-        UIView.transition(with: genresView, duration: 1, options: .transitionCrossDissolve, animations: {
+        UIView.transition(with: genresView, duration: 0.4, options: .transitionCrossDissolve, animations: {
             self.changeToGenre()
         }, completion: nil)
         
@@ -291,6 +292,12 @@ class FilterController: UIViewController {
     @IBOutlet weak var genreSelection: UIView!
     @IBOutlet weak var genreSelectionLabel: UILabel!
     @IBOutlet weak var timeFrameSlider: MultiSlider!
+    @IBAction func nextButton(_ sender: UIButton) {
+        if (genreSelectionLabel.text != "GENRE") {
+            self.performSegue(withIdentifier: "showLoadingScreen", sender: (Any).self)
+        }
+    }
+    @IBOutlet weak var nextButtonOutlet: UIButton!
     
     //Region Selected
     @IBAction func USSelected(_ sender: UITapGestureRecognizer) {
@@ -302,7 +309,7 @@ class FilterController: UIViewController {
         regionSelectionLabel.text = territory1Label.text
         regionSelectionLabel.textColor = .white
         
-        UIView.transition(with: regionsView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+        UIView.transition(with: regionsView, duration: 0.4, options: .transitionCrossDissolve, animations: {
             self.changeToChannel()
         }, completion: nil)
     }
@@ -348,7 +355,7 @@ class FilterController: UIViewController {
         regionSelectionLabel.text = territory2Label.text
         regionSelectionLabel.textColor = .white
         
-        UIView.transition(with: regionsView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+        UIView.transition(with: regionsView, duration: 0.4, options: .transitionCrossDissolve, animations: {
             self.changeToChannel()
         }, completion: nil)
         
@@ -392,7 +399,7 @@ class FilterController: UIViewController {
         regionSelectionLabel.text = territory4Label.text
         regionSelectionLabel.textColor = .white
         
-        UIView.transition(with: regionsView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+        UIView.transition(with: regionsView, duration: 0.4, options: .transitionCrossDissolve, animations: {
             self.changeToChannel()
         }, completion: nil)
     }
@@ -406,7 +413,7 @@ class FilterController: UIViewController {
         regionSelectionLabel.text = territory6Label.text
         regionSelectionLabel.textColor = .white
         
-        UIView.transition(with: regionsView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+        UIView.transition(with: regionsView, duration: 0.4, options: .transitionCrossDissolve, animations: {
             self.changeToChannel()
         }, completion: nil)
     }
@@ -420,7 +427,7 @@ class FilterController: UIViewController {
         regionSelectionLabel.text = territory3Label.text
         regionSelectionLabel.textColor = .white
         
-        UIView.transition(with: regionsView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+        UIView.transition(with: regionsView, duration: 0.4, options: .transitionCrossDissolve, animations: {
             self.changeToChannel()
         }, completion: nil)
     }
@@ -465,7 +472,7 @@ class FilterController: UIViewController {
         regionSelectionLabel.text = territory5Label.text
         regionSelectionLabel.textColor = .white
         
-        UIView.transition(with: regionsView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+        UIView.transition(with: regionsView, duration: 0.4, options: .transitionCrossDissolve, animations: {
             self.changeToChannel()
         }, completion: nil)
     }
@@ -487,13 +494,12 @@ class FilterController: UIViewController {
         UIView.animate(withDuration: 0.5, animations: {
             self.channelSelection.backgroundColor = sender.view?.backgroundColor
             self.channelSelection.layer.shadowColor = sender.view?.layer.shadowColor
-
         })
         
         mediaSelectionLabel.text = media1Label.text
         mediaSelectionLabel.textColor = .white
         
-        UIView.transition(with: channelsView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+        UIView.transition(with: channelsView, duration: 0.4, options: .transitionCrossDissolve, animations: {
             self.changeToGenre()
         }, completion: nil)
     }
@@ -506,7 +512,7 @@ class FilterController: UIViewController {
         mediaSelectionLabel.text = media2Label.text
         mediaSelectionLabel.textColor = .white
         
-        UIView.transition(with: channelsView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+        UIView.transition(with: channelsView, duration: 0.4, options: .transitionCrossDissolve, animations: {
             self.changeToGenre()
         }, completion: nil)
     }
@@ -519,7 +525,7 @@ class FilterController: UIViewController {
         mediaSelectionLabel.text = media3Label.text
         mediaSelectionLabel.textColor = .white
         
-        UIView.transition(with: channelsView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+        UIView.transition(with: channelsView, duration: 0.4, options: .transitionCrossDissolve, animations: {
             self.changeToGenre()
         }, completion: nil)
     }
@@ -532,7 +538,7 @@ class FilterController: UIViewController {
         mediaSelectionLabel.text = media4Label.text
         mediaSelectionLabel.textColor = .white
         
-        UIView.transition(with: channelsView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+        UIView.transition(with: channelsView, duration: 0.4, options: .transitionCrossDissolve, animations: {
             self.changeToGenre()
         }, completion: nil)
     }
@@ -561,8 +567,14 @@ class FilterController: UIViewController {
             self.genreSelection.backgroundColor = sender.view?.backgroundColor
             self.genreSelection.layer.shadowColor = sender.view?.layer.shadowColor
         }, completion: { (finished: Bool) -> () in
-//            self.performSegue(withIdentifier: "calendarSegue", sender: (Any).self)
-            self.performSegue(withIdentifier: "showLoadingScreen", sender: (Any).self)
+
+            self.nextButtonOutlet.isUserInteractionEnabled = true
+            
+            UIView.animate(withDuration: 0.5) {
+                self.nextButtonOutlet.alpha = 1.0
+                self.nextButtonOutlet.layer.backgroundColor =
+                UIColor(named: "wbblue")?.cgColor
+            }
         })
     
     }
@@ -575,7 +587,15 @@ class FilterController: UIViewController {
             self.genreSelection.backgroundColor = sender.view?.backgroundColor
             self.genreSelection.layer.shadowColor = sender.view?.layer.shadowColor
         }, completion: { (finished: Bool) -> () in
-            self.performSegue(withIdentifier: "showLoadingScreen", sender: (Any).self)
+//            self.performSegue(withIdentifier: "showLoadingScreen", sender: (Any).self)
+            self.nextButtonOutlet.isUserInteractionEnabled = true
+            
+            UIView.animate(withDuration: 0.5) {
+               
+               self.nextButtonOutlet.alpha = 1.0
+                self.nextButtonOutlet.layer.backgroundColor =
+                UIColor(named: "wbblue")?.cgColor
+            }
         })
     }
     @IBAction func comedySelected(_ sender: UITapGestureRecognizer) {
@@ -585,7 +605,14 @@ class FilterController: UIViewController {
             self.genreSelection.backgroundColor = sender.view?.backgroundColor
             self.genreSelection.layer.shadowColor = sender.view?.layer.shadowColor
         }, completion: { (finished: Bool) -> () in
-            self.performSegue(withIdentifier: "showLoadingScreen", sender: (Any).self)
+//            self.performSegue(withIdentifier: "showLoadingScreen", sender: (Any).self)
+            self.nextButtonOutlet.isUserInteractionEnabled = true
+            
+            UIView.animate(withDuration: 0.5) {
+                self.nextButtonOutlet.alpha = 1.0
+                self.nextButtonOutlet.layer.backgroundColor =
+                UIColor(named: "wbblue")?.cgColor
+            }
         })
     }
     @IBAction func dramaSelected(_ sender: UITapGestureRecognizer) {
@@ -595,7 +622,22 @@ class FilterController: UIViewController {
             self.genreSelection.backgroundColor = sender.view?.backgroundColor
             self.genreSelection.layer.shadowColor = sender.view?.layer.shadowColor
         }, completion: { (finished: Bool) -> () in
-            self.performSegue(withIdentifier: "showLoadingScreen", sender: (Any).self)
+//            nextButtonOutlet.setTitleColor(UIColor.white)
+            self.nextButtonOutlet.isUserInteractionEnabled = true
+            
+            UIView.animate(withDuration: 0.5) {
+                self.nextButtonOutlet.alpha = 1.0
+                self.nextButtonOutlet.layer.backgroundColor =
+                UIColor(named: "wbblue")?.cgColor
+            }
+//            self.performSegue(withIdentifier: "showLoadingScreen", sender: (Any).self)
+            self.nextButtonOutlet.isUserInteractionEnabled = true
+            
+            UIView.animate(withDuration: 0.5) {
+                self.nextButtonOutlet.alpha = 1.0
+                self.nextButtonOutlet.layer.backgroundColor =
+                UIColor(named: "wbblue")?.cgColor
+            }
         })
     }
     @IBAction func horrorSelected(_ sender: UITapGestureRecognizer) {
@@ -606,7 +648,14 @@ class FilterController: UIViewController {
             self.genreSelection.backgroundColor = sender.view?.backgroundColor
             self.genreSelection.layer.shadowColor = sender.view?.layer.shadowColor
         }, completion: { (finished: Bool) -> () in
-            self.performSegue(withIdentifier: "showLoadingScreen", sender: (Any).self)
+
+            self.nextButtonOutlet.isUserInteractionEnabled = true
+            
+            UIView.animate(withDuration: 0.5) {
+                self.nextButtonOutlet.alpha = 1.0
+                self.nextButtonOutlet.layer.backgroundColor =
+                UIColor(named: "wbblue")?.cgColor
+            }
         })
     }
     
@@ -617,7 +666,14 @@ class FilterController: UIViewController {
             self.genreSelection.backgroundColor = sender.view?.backgroundColor
             self.genreSelection.layer.shadowColor = sender.view?.layer.shadowColor
         }, completion: { (finished: Bool) -> () in
-            self.performSegue(withIdentifier: "showLoadingScreen", sender: (Any).self)
+
+            self.nextButtonOutlet.isUserInteractionEnabled = true
+            
+            UIView.animate(withDuration: 0.5) {
+                self.nextButtonOutlet.alpha = 1.0
+                self.nextButtonOutlet.layer.backgroundColor =
+                UIColor(named: "wbblue")?.cgColor
+            }
         })
     
     }
@@ -629,7 +685,14 @@ class FilterController: UIViewController {
             self.genreSelection.backgroundColor = sender.view?.backgroundColor
             self.genreSelection.layer.shadowColor = sender.view?.layer.shadowColor
         }, completion: { (finished: Bool) -> () in
-            self.performSegue(withIdentifier: "showLoadingScreen", sender: (Any).self)
+//            self.performSegue(withIdentifier: "showLoadingScreen", sender: (Any).self)
+            self.nextButtonOutlet.isUserInteractionEnabled = true
+            
+            UIView.animate(withDuration: 0.5) {
+                self.nextButtonOutlet.alpha = 1.0
+                self.nextButtonOutlet.layer.backgroundColor =
+                UIColor(named: "wbblue")?.cgColor
+            }
         })
     }
     
@@ -637,7 +700,7 @@ class FilterController: UIViewController {
     // MARK: ChangeToRegion()
     func changeToRegion() {
         
-        points = Global().getCirclePoints(centerPoint: CGPoint.init(x: regionsView.bounds.width/2, y: regionsView.bounds.height/2), radius: 300, n: 360)
+        points = Global().getCirclePoints(centerPoint: CGPoint.init(x: regionsView.bounds.width/2, y: regionsView.bounds.height/2), radius: 300, n: maxPoints)
         
         channelsView.isHidden = true
         genresView.isHidden = true
@@ -660,9 +723,9 @@ class FilterController: UIViewController {
         Asia.layer.zPosition = 0
         Oceanic.layer.zPosition = 0
         
-        
+           
         Region.layer.cornerRadius = 75
-        regionSelection.layer.cornerRadius = 75
+        regionSelection.layer.cornerRadius = 50
                
         US.frame.origin = points[0]
         EU.frame.origin = points[60]
@@ -681,43 +744,43 @@ class FilterController: UIViewController {
         Region.frame.origin = CGPoint(x: w/2 - (genres.frame.width/2), y: h/2 - (genres.frame.height/2))
         
         US.layer.shadowOffset = .zero
-        US.layer.shadowColor = UIColor.orange.cgColor
+        US.layer.shadowColor = UIColor.systemTeal.cgColor
         US.layer.shadowRadius = 20
         US.layer.shadowOpacity = 0.3
         US.layer.shadowPath = UIBezierPath(rect: US.bounds).cgPath
-        US.layer.cornerRadius = 75
+        US.layer.cornerRadius = 60
         
         EU.layer.shadowOffset = .zero
-        EU.layer.shadowColor = UIColor.cyan.cgColor
+        EU.layer.shadowColor = UIColor.systemTeal.cgColor
         EU.layer.shadowRadius = 20
         EU.layer.shadowOpacity = 0.3
         EU.layer.shadowPath = UIBezierPath(rect: EU.bounds).cgPath
-        EU.layer.cornerRadius = 75
+        EU.layer.cornerRadius = 60
         
         CA.layer.shadowOffset = .zero
-        CA.layer.shadowColor = UIColor.red.cgColor
+        CA.layer.shadowColor = UIColor.systemTeal.cgColor
         CA.layer.shadowRadius = 20
         CA.layer.shadowOpacity = 0.3
         CA.layer.shadowPath = UIBezierPath(rect: CA.bounds).cgPath
-        CA.layer.cornerRadius = 75
+        CA.layer.cornerRadius = 60
         
-        SA.layer.shadowColor = UIColor.systemIndigo.cgColor
+        SA.layer.shadowColor = UIColor.systemTeal.cgColor
         SA.layer.shadowRadius = 20
         SA.layer.shadowOpacity = 0.3
         SA.layer.shadowPath = UIBezierPath(rect: SA.bounds).cgPath
-        SA.layer.cornerRadius = 75
+        SA.layer.cornerRadius = 60
         
-        Asia.layer.shadowColor = UIColor.yellow.cgColor
+        Asia.layer.shadowColor = UIColor.systemTeal.cgColor
         Asia.layer.shadowRadius = 20
         Asia.layer.shadowOpacity = 0.3
         Asia.layer.shadowPath = UIBezierPath(rect: Asia.bounds).cgPath
-        Asia.layer.cornerRadius = 75
+        Asia.layer.cornerRadius = 60
         
-        Oceanic.layer.shadowColor = UIColor.green.cgColor
+        Oceanic.layer.shadowColor = UIColor.systemTeal.cgColor
         Oceanic.layer.shadowRadius = 20
         Oceanic.layer.shadowOpacity = 0.3
         Oceanic.layer.shadowPath = UIBezierPath(rect: Oceanic.bounds).cgPath
-        Oceanic.layer.cornerRadius = 75
+        Oceanic.layer.cornerRadius = 60
         
         regionsView.isHidden = false
     }
@@ -725,7 +788,7 @@ class FilterController: UIViewController {
     // MARK: ChangeToChannel()
     func changeToChannel(){
         
-        points = Global().getCirclePoints(centerPoint: CGPoint.init(x: channelsView.bounds.width/2, y: channelsView.bounds.height/2), radius: 300, n: 360)
+        points = Global().getCirclePoints(centerPoint: CGPoint.init(x: channelsView.bounds.width/2, y: channelsView.bounds.height/2), radius: 300, n: maxPoints)
             
         regionsView.isHidden = true
         genresView.isHidden = true
@@ -734,48 +797,44 @@ class FilterController: UIViewController {
         let h = channelsView.bounds.height
     
         PPV.layer.shadowOffset = .zero
-        PPV.layer.shadowColor = UIColor.red.cgColor
+        PPV.layer.shadowColor = UIColor.systemTeal.cgColor
         PPV.layer.shadowRadius = 20
         PPV.layer.shadowOpacity = 0.3
         PPV.layer.shadowPath = UIBezierPath(rect: PPV.bounds).cgPath
-        //PPV.layer.cornerRadius = 75
         
         Premium.layer.shadowOffset = .zero
-        Premium.layer.shadowColor = UIColor.green.cgColor
+        Premium.layer.shadowColor = UIColor.systemTeal.cgColor
         Premium.layer.shadowRadius = 20
         Premium.layer.shadowOpacity = 0.3
         Premium.layer.shadowPath = UIBezierPath(rect: Premium.bounds).cgPath
-        //Premium.layer.cornerRadius = 75
         
         Public.layer.shadowOffset = .zero
-        Public.layer.shadowColor = UIColor.systemIndigo.cgColor
+        Public.layer.shadowColor = UIColor.systemTeal.cgColor
         Public.layer.shadowRadius = 20
         Public.layer.shadowOpacity = 0.3
         Public.layer.shadowPath = UIBezierPath(rect: Public.bounds).cgPath
-        //Public.layer.cornerRadius = 75
         
         onDemand.layer.shadowOffset = .zero
-        onDemand.layer.shadowColor = UIColor.yellow.cgColor
+        onDemand.layer.shadowColor = UIColor.systemTeal.cgColor
         onDemand.layer.shadowRadius = 20
         onDemand.layer.shadowOpacity = 0.3
         onDemand.layer.shadowPath = UIBezierPath(rect: onDemand.bounds).cgPath
-        //onDemand.layer.cornerRadius = 75
             
         Distribution.layer.cornerRadius = 75
-        PPV.layer.cornerRadius = 75
-        Premium.layer.cornerRadius = 75
-        Public.layer.cornerRadius = 75
-        onDemand.layer.cornerRadius = 75
+        PPV.layer.cornerRadius = 60
+        Premium.layer.cornerRadius = 60
+        Public.layer.cornerRadius = 60
+        onDemand.layer.cornerRadius = 60
             
-        PPV.frame.origin = points[0]
-        Premium.frame.origin = points[90]
-        Public.frame.origin = points[180]
-        onDemand.frame.origin = points[270]
+        PPV.frame.origin = points[45]
+        Premium.frame.origin = points[135]
+        Public.frame.origin = points[225]
+        onDemand.frame.origin = points[315]
             
-        locations[PPV] = 0
-        locations[Premium] = 90
-        locations[Public] = 180
-        locations[onDemand] = 270
+        locations[PPV] = 45 //0
+        locations[Premium] = 135 //90
+        locations[Public] = 225 //180
+        locations[onDemand] = 315 //270
             
         Distribution.frame.origin = CGPoint(x: w/2 - (Distribution.frame.width/2), y: h/2 - (Distribution.frame.height/2))
             
@@ -785,7 +844,14 @@ class FilterController: UIViewController {
     // MARK: ChangeToGenre()
     func changeToGenre() {
         
-        points = Global().getCirclePoints(centerPoint: CGPoint.init(x: genresView.bounds.width/2, y: genresView.bounds.height/2), radius: 300, n: 360)
+        self.nextButtonOutlet.isUserInteractionEnabled = false
+        nextButtonOutlet.layer.backgroundColor = UIColor.systemGray.cgColor
+
+        nextButtonOutlet.alpha = 0.25
+        nextButtonOutlet.layer.cornerRadius = 20
+        nextButtonOutlet.setTitleColor(UIColor.systemGray, for: .disabled)
+        
+        points = Global().getCirclePoints(centerPoint: CGPoint.init(x: genresView.bounds.width/2, y: genresView.bounds.height/2), radius: 300, n: maxPoints)
         
         regionsView.isHidden = true
         channelsView.isHidden = true
@@ -800,49 +866,49 @@ class FilterController: UIViewController {
         action.layer.shadowPath = UIBezierPath(rect: action.bounds).cgPath
         
         comedy.layer.shadowOffset = .zero
-        comedy.layer.shadowColor = UIColor.red.cgColor
+        comedy.layer.shadowColor = UIColor.systemTeal.cgColor
         comedy.layer.shadowRadius = 20
         comedy.layer.shadowOpacity = 0.3
         comedy.layer.shadowPath = UIBezierPath(rect: comedy.bounds).cgPath
         
         drama.layer.shadowOffset = .zero
-        drama.layer.shadowColor = UIColor.yellow.cgColor
+        drama.layer.shadowColor = UIColor.systemTeal.cgColor
         drama.layer.shadowRadius = 20
         drama.layer.shadowOpacity = 0.3
         drama.layer.shadowPath = UIBezierPath(rect: drama.bounds).cgPath
         
         horror.layer.shadowOffset = .zero
-        horror.layer.shadowColor = UIColor.purple.cgColor
+        horror.layer.shadowColor = UIColor.systemTeal.cgColor
         horror.layer.shadowRadius = 20
         horror.layer.shadowOpacity = 0.3
         horror.layer.shadowPath = UIBezierPath(rect: horror.bounds).cgPath
         
         allGenres.layer.shadowOffset = .zero
-        allGenres.layer.shadowColor = UIColor.gray.cgColor
+        allGenres.layer.shadowColor = UIColor.systemTeal.cgColor
         allGenres.layer.shadowRadius = 20
         allGenres.layer.shadowOpacity = 0.3
         allGenres.layer.shadowPath = UIBezierPath(rect: allGenres.bounds).cgPath
         
         thriller.layer.shadowOffset = .zero
-        thriller.layer.shadowColor = UIColor.orange.cgColor
+        thriller.layer.shadowColor = UIColor.systemTeal.cgColor
         thriller.layer.shadowRadius = 20
         thriller.layer.shadowOpacity = 0.3
         thriller.layer.shadowPath = UIBezierPath(rect: thriller.bounds).cgPath
         
         scifi.layer.shadowOffset = .zero
-        scifi.layer.shadowColor = UIColor.green.cgColor
+        scifi.layer.shadowColor = UIColor.systemTeal.cgColor
         scifi.layer.shadowRadius = 20
         scifi.layer.shadowOpacity = 0.3
         scifi.layer.shadowPath = UIBezierPath(rect: scifi.bounds).cgPath
     
         genres.layer.cornerRadius = 75
-        action.layer.cornerRadius = 75
-        comedy.layer.cornerRadius = 75
-        drama.layer.cornerRadius = 75
-        horror.layer.cornerRadius = 75
-        allGenres.layer.cornerRadius = 75
-        thriller.layer.cornerRadius = 75
-        scifi.layer.cornerRadius = 75
+        action.layer.cornerRadius = 60
+        comedy.layer.cornerRadius = 60
+        drama.layer.cornerRadius = 60
+        horror.layer.cornerRadius = 60
+        allGenres.layer.cornerRadius = 60
+        thriller.layer.cornerRadius = 60
+        scifi.layer.cornerRadius = 60
         
         allGenres.frame.origin = points[0]
         action.frame.origin = points[51]
@@ -865,7 +931,7 @@ class FilterController: UIViewController {
         genresView.isHidden = false
     }
     
-    // MARK: - ViewDiDLoad()
+    // MARK: - ViewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -879,38 +945,40 @@ class FilterController: UIViewController {
 //        headerText.textColor = UIColor(named: "wbblue")!
 //        navigationItem.titleView = headerText
         self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.title = "RIGHTS AVAILABILITY"
         
-        selectionsView.backgroundColor = .clear
+        
+        //selectionsView.backgroundColor = .clear
         
         regionSelection.layer.shadowOffset = .zero
         regionSelection.layer.shadowColor = UIColor.clear.cgColor
         regionSelection.layer.shadowRadius = 20
         regionSelection.layer.shadowOpacity = 0.3
-        regionSelection.layer.shadowPath = UIBezierPath(rect: regionSelection.bounds).cgPath
+        //regionSelection.layer.shadowPath = UIBezierPath(rect: regionSelection.bounds).cgPath
         
         channelSelection.layer.shadowOffset = .zero
         channelSelection.layer.shadowColor = UIColor.clear.cgColor
         channelSelection.layer.shadowRadius = 20
         channelSelection.layer.shadowOpacity = 0.3
-        channelSelection.layer.shadowPath = UIBezierPath(rect: channelSelection.bounds).cgPath
+        //channelSelection.layer.shadowPath = UIBezierPath(rect: channelSelection.bounds).cgPath
         
         genreSelection.layer.shadowOffset = .zero
         genreSelection.layer.shadowColor = UIColor.clear.cgColor
         genreSelection.layer.shadowRadius = 20
         genreSelection.layer.shadowOpacity = 0.3
-        genreSelection.layer.shadowPath = UIBezierPath(rect: genreSelection.bounds).cgPath
+        //genreSelection.layer.shadowPath = UIBezierPath(rect: genreSelection.bounds).cgPath
         
-        regionSelection.layer.cornerRadius = 75
-        channelSelection.layer.cornerRadius = 75
-        genreSelection.layer.cornerRadius = 75
+        regionSelection.layer.cornerRadius = 50
+        channelSelection.layer.cornerRadius = 50
+        genreSelection.layer.cornerRadius = 50
         changeToRegion()
         
     
         // Credit to https://github.com/yonat/MultiSlider
-        timeFrameSlider.minimumValue = 2019    // default is 0.0
+        timeFrameSlider.minimumValue = 2020    // default is 0.0
         timeFrameSlider.maximumValue = 2055    // default is 1.0
 
-        timeFrameSlider.value = [2019, 2055]
+        timeFrameSlider.value = [2020, 2055]
         timeFrameSlider.orientation = .horizontal
         timeFrameSlider.outerTrackColor = .lightGray
         timeFrameSlider.valueLabelPosition = .bottom // .notAnAttribute = don't show labels
@@ -928,7 +996,7 @@ class FilterController: UIViewController {
         
         genreSelection.frame.origin.y = view.safeAreaInsets.top + 10
         
-        selectionsView.frame.origin.y = view.safeAreaInsets.top
+        //selectionsView.frame.origin.y = view.safeAreaInsets.top
         
     }
     
@@ -946,8 +1014,8 @@ class FilterController: UIViewController {
     }
     
     func getCirclePoints(centerPoint point: CGPoint, radius: CGFloat, n: Int)->[CGPoint] {
-        let result: [CGPoint] = stride(from: 0.0, to: 360.0, by: Double(360 / n)).map {
-            let bearing = CGFloat($0) * .pi / 180
+        let result: [CGPoint] = stride(from: 0, to: maxPoints, by: maxPoints / n).map {
+            let bearing = CGFloat($0) * .pi / CGFloat(maxPoints/2)
             let x = point.x + radius * cos(bearing)
             let y = point.y + radius * sin(bearing)
             return CGPoint(x: x, y: y)
@@ -964,22 +1032,22 @@ class FilterController: UIViewController {
         var currentLoc5 = locations[Asia]
         var currentLoc6 = locations[Oceanic]
         
-        if (currentLoc == 359) {
+        if (currentLoc == maxPoints - 1) {
             currentLoc = 0
         }
-        else if (currentLoc2 == 359) {
+        else if (currentLoc2 == maxPoints - 1) {
             currentLoc2 = 0
         }
-        else if (currentLoc3 == 359) {
+        else if (currentLoc3 == maxPoints - 1) {
             currentLoc3 = 0
         }
-        else if (currentLoc4 == 359) {
+        else if (currentLoc4 == maxPoints - 1) {
             currentLoc4 = 0
         }
-        else if (currentLoc5 == 359) {
+        else if (currentLoc5 == maxPoints - 1) {
             currentLoc5 = 0
         }
-        else if (currentLoc6 == 359) {
+        else if (currentLoc6 == maxPoints - 1) {
             currentLoc6 = 0
         }
         
@@ -1011,22 +1079,22 @@ class FilterController: UIViewController {
         var currentLoc6 = locations[Oceanic]
         
         if (currentLoc == 0) {
-            currentLoc = 359
+            currentLoc = maxPoints - 1
         }
         else if (currentLoc2 == 0) {
-            currentLoc2 = 359
+            currentLoc2 = maxPoints - 1
         }
         else if (currentLoc3 == 0) {
-            currentLoc3 = 359
+            currentLoc3 = maxPoints - 1
         }
         else if (currentLoc4 == 0) {
-            currentLoc4 = 359
+            currentLoc4 = maxPoints - 1
         }
         else if (currentLoc5 == 0) {
-            currentLoc5 = 359
+            currentLoc5 = maxPoints - 1
         }
         else if (currentLoc6 == 0) {
-            currentLoc6 = 359
+            currentLoc6 = maxPoints - 1
         }
         
         locations[US] = currentLoc! - 1
@@ -1060,16 +1128,16 @@ class FilterController: UIViewController {
         var currentLoc3 = locations[Public]
         var currentLoc4 = locations[onDemand]
             
-        if (currentLoc == 359) {
+        if (currentLoc == maxPoints - 1) {
             currentLoc = 0
         }
-        else if (currentLoc2 == 359) {
+        else if (currentLoc2 == maxPoints - 1) {
             currentLoc2 = 0
         }
-        else if (currentLoc3 == 359) {
+        else if (currentLoc3 == maxPoints - 1) {
             currentLoc3 = 0
         }
-        else if (currentLoc4 == 359) {
+        else if (currentLoc4 == maxPoints - 1) {
             currentLoc4 = 0
         }
             
@@ -1095,25 +1163,25 @@ class FilterController: UIViewController {
         var currentLoc6 = locations[thriller]
         
         
-        if (currentLoc0 == 359) {
+        if (currentLoc0 == maxPoints - 1) {
             currentLoc0 = 0
         }
-        else if (currentLoc1 == 359) {
+        else if (currentLoc1 == maxPoints - 1) {
             currentLoc1 = 0
         }
-        else if (currentLoc2 == 359) {
+        else if (currentLoc2 == maxPoints - 1) {
             currentLoc2 = 0
         }
-        else if (currentLoc3 == 359) {
+        else if (currentLoc3 == maxPoints - 1) {
             currentLoc3 = 0
         }
-        else if (currentLoc4 == 359) {
+        else if (currentLoc4 == maxPoints - 1) {
             currentLoc4 = 0
         }
-        else if (currentLoc5 == 359) {
+        else if (currentLoc5 == maxPoints - 1) {
             currentLoc5 = 0
         }
-        else if (currentLoc6 == 359) {
+        else if (currentLoc6 == maxPoints - 1) {
             currentLoc6 = 0
         }
         

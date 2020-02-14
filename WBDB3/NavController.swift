@@ -18,8 +18,9 @@ class NavController: UINavigationController {
         
         let capLogo = UIImageView(image: UIImage(named: "capgeminiSpade"))
         capLogo.frame = CGRect(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2, width: CGFloat(500), height: CGFloat(500))
-        capLogo.center = CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2)
-        capLogo.alpha = 0.2
+        capLogo.center = CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2 + 10)
+        capLogo.alpha = 0.1
+    
 
         self.view.insertSubview(capLogo, at: 0)
         self.view.backgroundColor = UIColor.white

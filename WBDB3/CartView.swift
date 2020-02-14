@@ -24,7 +24,7 @@ struct CartView: View {
         Group {
             VStack {
                 Form {
-                    Text("DEAL ID: \(dealID)")
+                    Text("AVAILS LIST ID: \(dealID)")
                     TextField("LICENSEE", text: self.$licensee)
                     DatePicker(selection: self.$fromDate, in: ...Date().addingTimeInterval(1577847600), displayedComponents: .date, label: {
                         Text("FROM")
@@ -51,7 +51,7 @@ struct CartView: View {
          Button(action: {
             print("finalized")
          }) {
-            Text("FINALIZE".uppercased()).font(.headline).frame(width: UIScreen.main.bounds.width - 300, height: CGFloat(50), alignment: .center).foregroundColor(wbBlue).overlay(RoundedRectangle(cornerRadius: CGFloat(50)).stroke(wbBlue, lineWidth: 5))
+            Text("FINALIZE".uppercased()).font(.headline).frame(width: screenWidth * 0.8, height: screenHeight * 0.05, alignment: .center).foregroundColor(wbBlue).overlay(RoundedRectangle(cornerRadius: screenHeight * 0.05).stroke(wbBlue, lineWidth: 5))
                 }.padding()
         }
     }
@@ -77,6 +77,7 @@ struct movieRowCart: View {
     
     
     var body: some View {
+        
         //ScrollView {
         HStack (spacing: 10){
             Image(uiImage: title.poster!)
@@ -86,9 +87,8 @@ struct movieRowCart: View {
                 Text(title.title).font(.headline).frame(width: CGFloat(UIScreen.main.bounds.width/2), height: CGFloat(50), alignment: .leading)
                 }.frame(width: CGFloat(UIScreen.main.bounds.width/2), height: CGFloat(50), alignment: .leading)
             }.padding().frame(width: UIScreen.main.bounds.width - 200, height: CGFloat(100), alignment: .leading)
-            
-            }//.frame(width: UIScreen.main.bounds.width-50, height: CGFloat(100), alignment: .topLeading)
-    }
+    }//.frame(width: UIScreen.main.bounds.width-50, height: CGFloat(100), alignment: .topLeading)
+}
 
 
 struct label: View {

@@ -11,8 +11,12 @@ import SwiftUI
 struct bundle: Identifiable {
     let id = UUID()
     var bundleName: String
-    @State var selected: Bool = false
+    @State var selected: Bool// = false
     var pack: [movies]
+    
+    func toggleState() {
+        selected.toggle()
+    }
 }
 
 // MARK: Bundle View
@@ -23,41 +27,52 @@ struct BundlesView: View {
         for title in pack {
             self.cartInstance.globalCart.append(title)
         }
-        bundle.selected.toggle()
+        bundle.toggleState()
     }
     
     var body: some View {
         Group {
             VStack {
-                //Text(verbatim: "BUNDLES").font(.largeTitle).bold().frame(width: UIScreen.main.bounds.width, height: CGFloat(100), alignment: .center).background(Color(UIColor(named: "wbblue")!)).foregroundColor(Color.white).shadow(radius: CGFloat(25))
                 ScrollView {
                     VStack {
-                        ForEach(bundles) { bundle in
+                        ForEach(bundles.indices) { bundle in
                             HStack {
                                 VStack (spacing: 20){
-                                    Text(bundle.bundleName.uppercased()).font(.headline).frame(width: CGFloat(700), alignment: .leading).foregroundColor(.black)
+                                    Text(self.bundles[bundle].bundleName.uppercased()).font(.headline)
+                                        .padding(.leading)
+                                        .frame(width: screenWidth, alignment: .leading).foregroundColor(.black)
                             
-                                    bundleRow(titles: bundle.pack)
-                                    Text(verbatim: "Price: $-----".uppercased()).font(.subheadline).frame(width: CGFloat(700), alignment: .trailing).foregroundColor(.black)
+                                    HStack {
+                                        bundleRow(titles: self.bundles[bundle].pack)
+
+                                        Button(action: {
+                                            if(self.bundles[bundle].selected == false) {
+                                                self.bundles[bundle].selected = true
+                                            }
+                                            else {
+                                                self.bundles[bundle].selected = false
+                                            }
+//                                            self.bundles[bundle].selected.toggle()
+                                            print(self.bundles[bundle].selected)
+                                            self.addMovies(pack: self.bundles[bundle].pack, bundle: self.bundles[bundle])
+                                        }) {
+                                            Image(self.bundles[bundle].selected ? "checked" : "add").resizable().frame(width: screenWidth * 0.05, height: screenWidth * 0.05, alignment: .center).accentColor(wbBlue)
+                                        }
+                                    }.frame(width: screenWidth, height: screenWidth * 0.15, alignment: .center)
+                                    
+                                    Text(verbatim: "Price: $-----".uppercased()).font(.subheadline).frame(width: screenWidth * 0.8, alignment: .trailing).foregroundColor(.black)
                                 }
-                                Button(action: {
-                                    print(bundle.selected)
-                                    self.addMovies(pack: bundle.pack, bundle: bundle)
-                                }) {
-                                    Image(bundle.selected ? "checked" : "add").accentColor(wbBlue)
-                                }
-                            }.frame(width: UIScreen.main.bounds.width-200, height: CGFloat(250), alignment: .leading)
+                            }.frame(width: screenWidth, height: screenHeight * 0.2, alignment: .leading)
                             Divider()
                         }
                     }
-                }.frame(width: UIScreen.main.bounds.width)
+                }.frame(width: screenWidth)
             }
         }
     }
     
-    
     // MARK: BUNDLE ARRAY
-    @State var bundles: [bundle] = [bundle(bundleName: "DC Universe", pack: [
+    @State var bundles: [bundle] = [bundle(bundleName: "DC Universe", selected: false, pack: [
         movies(id: 1,
            poster: UIImage(named: "aquaman"),
            title: "Aquaman",
@@ -164,7 +179,7 @@ struct BundlesView: View {
                recommendedMovies(poster: UIImage(named: "justiceleague")!),
                recommendedMovies(poster: UIImage(named: "suicidesquad")!)])
         ]),
-                             bundle(bundleName: "Horror", pack: [
+                                    bundle(bundleName: "Horror", selected: false, pack: [
             movies(id: 14,
                    poster: UIImage(named: "annabelleComesHome"),
                    title: "Annabelle Comes Home",
@@ -276,17 +291,24 @@ struct bundleRow: View {
     @EnvironmentObject var cartInstance: CartClass
     
     var body: some View {
-        HStack (spacing: 20){
-            ForEach(titles, id: \.id) { title in
-                posterView(title: title)
+        ScrollView (.horizontal){
+            HStack (spacing: 10){
+                ForEach(titles, id: \.id) { title in
+                        posterView(title: title)
+                    }
+                Button(action: {
+                    
+                }) {
+                    Image("emptyPoster").resizable().frame(width: screenWidth * 0.1, height: screenWidth * 0.15, alignment: .center)
+                }.buttonStyle(PlainButtonStyle())
+                //posterView(title: movies(poster: UIImage(named: "emptyPoster")))
             }
         }
-        .frame(width: CGFloat(750), height: CGFloat(160), alignment: .center)
-        .padding(.trailing, CGFloat(30)).padding(.leading, CGFloat(30))
+        .frame(width: screenWidth * 0.8, height: screenHeight * 0.15, alignment: .center)
+        //.padding(.trailing, CGFloat(30))
+        //.padding(.leading, CGFloat(30))
     }
 }
-
-
 
 struct posterView: View {
     var title: movies
@@ -297,14 +319,15 @@ struct posterView: View {
         HStack {
             Image(uiImage: title.poster!)
                 .resizable()
-                .frame(width: CGFloat(100), height: CGFloat(150), alignment: .center)
-            .gesture(TapGesture()
-                .onEnded({
-                    self.showDetails.toggle()
-                })
-            ).sheet(isPresented: self.$showDetails, content: {
+                .frame(width: screenWidth * 0.1, height: screenWidth * 0.15, alignment: .center)
+                .gesture(TapGesture()
+                    .onEnded({
+                        self.showDetails.toggle()
+                    })
+                )
+                .sheet(isPresented: self.$showDetails, content: {
                 expandTitle(showModal: self.$showDetails, title: self.title).environmentObject(self.cartInstance)
-            })
+                })
         }
     }
 }
