@@ -567,14 +567,19 @@ class FilterController: UIViewController {
             self.genreSelection.backgroundColor = sender.view?.backgroundColor
             self.genreSelection.layer.shadowColor = sender.view?.layer.shadowColor
         }, completion: { (finished: Bool) -> () in
-
             self.nextButtonOutlet.isUserInteractionEnabled = true
+            self.nextButtonOutlet.alpha = 1.0
+            self.nextButtonOutlet.layer.backgroundColor = UIColor(named: "wbblue")?.cgColor
             
-            UIView.animate(withDuration: 0.5) {
-                self.nextButtonOutlet.alpha = 1.0
-                self.nextButtonOutlet.layer.backgroundColor =
-                UIColor(named: "wbblue")?.cgColor
-            }
+            UIView.animate(withDuration: 0.75,
+                           delay: 0,
+                           options: [.curveEaseInOut,
+                                     .autoreverse,
+                                     .repeat],
+                           animations: {
+                            self.nextButtonOutlet.layer.backgroundColor = UIColor.systemTeal.cgColor
+                
+            })
         })
     
     }
@@ -587,15 +592,19 @@ class FilterController: UIViewController {
             self.genreSelection.backgroundColor = sender.view?.backgroundColor
             self.genreSelection.layer.shadowColor = sender.view?.layer.shadowColor
         }, completion: { (finished: Bool) -> () in
-//            self.performSegue(withIdentifier: "showLoadingScreen", sender: (Any).self)
             self.nextButtonOutlet.isUserInteractionEnabled = true
+            self.nextButtonOutlet.alpha = 1.0
+            self.nextButtonOutlet.layer.backgroundColor = UIColor(named: "wbblue")?.cgColor
             
-            UIView.animate(withDuration: 0.5) {
-               
-               self.nextButtonOutlet.alpha = 1.0
-                self.nextButtonOutlet.layer.backgroundColor =
-                UIColor(named: "wbblue")?.cgColor
-            }
+            UIView.animate(withDuration: 0.75,
+                           delay: 0,
+                           options: [.curveEaseInOut,
+                                     .autoreverse,
+                                     .repeat],
+                           animations: {
+                            self.nextButtonOutlet.layer.backgroundColor = UIColor.systemTeal.cgColor
+                
+            })
         })
     }
     @IBAction func comedySelected(_ sender: UITapGestureRecognizer) {
@@ -605,14 +614,19 @@ class FilterController: UIViewController {
             self.genreSelection.backgroundColor = sender.view?.backgroundColor
             self.genreSelection.layer.shadowColor = sender.view?.layer.shadowColor
         }, completion: { (finished: Bool) -> () in
-//            self.performSegue(withIdentifier: "showLoadingScreen", sender: (Any).self)
             self.nextButtonOutlet.isUserInteractionEnabled = true
+            self.nextButtonOutlet.alpha = 1.0
+            self.nextButtonOutlet.layer.backgroundColor = UIColor(named: "wbblue")?.cgColor
             
-            UIView.animate(withDuration: 0.5) {
-                self.nextButtonOutlet.alpha = 1.0
-                self.nextButtonOutlet.layer.backgroundColor =
-                UIColor(named: "wbblue")?.cgColor
-            }
+            UIView.animate(withDuration: 0.75,
+                           delay: 0,
+                           options: [.curveEaseInOut,
+                                     .autoreverse,
+                                     .repeat],
+                           animations: {
+                            self.nextButtonOutlet.layer.backgroundColor = UIColor.systemTeal.cgColor
+                
+            })
         })
     }
     @IBAction func dramaSelected(_ sender: UITapGestureRecognizer) {
@@ -622,22 +636,20 @@ class FilterController: UIViewController {
             self.genreSelection.backgroundColor = sender.view?.backgroundColor
             self.genreSelection.layer.shadowColor = sender.view?.layer.shadowColor
         }, completion: { (finished: Bool) -> () in
-//            nextButtonOutlet.setTitleColor(UIColor.white)
+
             self.nextButtonOutlet.isUserInteractionEnabled = true
+            self.nextButtonOutlet.alpha = 1.0
+            self.nextButtonOutlet.layer.backgroundColor = UIColor(named: "wbblue")?.cgColor
             
-            UIView.animate(withDuration: 0.5) {
-                self.nextButtonOutlet.alpha = 1.0
-                self.nextButtonOutlet.layer.backgroundColor =
-                UIColor(named: "wbblue")?.cgColor
-            }
-//            self.performSegue(withIdentifier: "showLoadingScreen", sender: (Any).self)
-            self.nextButtonOutlet.isUserInteractionEnabled = true
-            
-            UIView.animate(withDuration: 0.5) {
-                self.nextButtonOutlet.alpha = 1.0
-                self.nextButtonOutlet.layer.backgroundColor =
-                UIColor(named: "wbblue")?.cgColor
-            }
+            UIView.animate(withDuration: 0.75,
+                           delay: 0,
+                           options: [.curveEaseInOut,
+                                     .autoreverse,
+                                     .repeat],
+                           animations: {
+                            self.nextButtonOutlet.layer.backgroundColor = UIColor.systemTeal.cgColor
+                
+            })
         })
     }
     @IBAction func horrorSelected(_ sender: UITapGestureRecognizer) {
@@ -650,12 +662,18 @@ class FilterController: UIViewController {
         }, completion: { (finished: Bool) -> () in
 
             self.nextButtonOutlet.isUserInteractionEnabled = true
+            self.nextButtonOutlet.alpha = 1.0
+            self.nextButtonOutlet.layer.backgroundColor = UIColor(named: "wbblue")?.cgColor
             
-            UIView.animate(withDuration: 0.5) {
-                self.nextButtonOutlet.alpha = 1.0
-                self.nextButtonOutlet.layer.backgroundColor =
-                UIColor(named: "wbblue")?.cgColor
-            }
+            UIView.animate(withDuration: 0.75,
+                           delay: 0,
+                           options: [.curveEaseInOut,
+                                     .autoreverse,
+                                     .repeat],
+                           animations: {
+                            self.nextButtonOutlet.layer.backgroundColor = UIColor.systemTeal.cgColor
+                
+            })
         })
     }
     
@@ -668,12 +686,18 @@ class FilterController: UIViewController {
         }, completion: { (finished: Bool) -> () in
 
             self.nextButtonOutlet.isUserInteractionEnabled = true
+            self.nextButtonOutlet.alpha = 1.0
+            self.nextButtonOutlet.layer.backgroundColor = UIColor(named: "wbblue")?.cgColor
             
-            UIView.animate(withDuration: 0.5) {
-                self.nextButtonOutlet.alpha = 1.0
-                self.nextButtonOutlet.layer.backgroundColor =
-                UIColor(named: "wbblue")?.cgColor
-            }
+            UIView.animate(withDuration: 0.75,
+                           delay: 0,
+                           options: [.curveEaseInOut,
+                                     .autoreverse,
+                                     .repeat],
+                           animations: {
+                            self.nextButtonOutlet.layer.backgroundColor = UIColor.systemTeal.cgColor
+                
+            })
         })
     
     }
@@ -685,14 +709,19 @@ class FilterController: UIViewController {
             self.genreSelection.backgroundColor = sender.view?.backgroundColor
             self.genreSelection.layer.shadowColor = sender.view?.layer.shadowColor
         }, completion: { (finished: Bool) -> () in
-//            self.performSegue(withIdentifier: "showLoadingScreen", sender: (Any).self)
             self.nextButtonOutlet.isUserInteractionEnabled = true
+            self.nextButtonOutlet.alpha = 1.0
+            self.nextButtonOutlet.layer.backgroundColor = UIColor(named: "wbblue")?.cgColor
             
-            UIView.animate(withDuration: 0.5) {
-                self.nextButtonOutlet.alpha = 1.0
-                self.nextButtonOutlet.layer.backgroundColor =
-                UIColor(named: "wbblue")?.cgColor
-            }
+            UIView.animate(withDuration: 0.75,
+                           delay: 0,
+                           options: [.curveEaseInOut,
+                                     .autoreverse,
+                                     .repeat],
+                           animations: {
+                            self.nextButtonOutlet.layer.backgroundColor = UIColor.systemTeal.cgColor
+                
+            })
         })
     }
     
