@@ -577,6 +577,7 @@ class FilterController: UIViewController {
                                      .autoreverse,
                                      .repeat],
                            animations: {
+                            UIView.setAnimationRepeatCount(1.5)
                             self.nextButtonOutlet.layer.backgroundColor = UIColor.systemTeal.cgColor
                 
             })
@@ -602,6 +603,7 @@ class FilterController: UIViewController {
                                      .autoreverse,
                                      .repeat],
                            animations: {
+                            UIView.setAnimationRepeatCount(1.5)
                             self.nextButtonOutlet.layer.backgroundColor = UIColor.systemTeal.cgColor
                 
             })
@@ -624,6 +626,8 @@ class FilterController: UIViewController {
                                      .autoreverse,
                                      .repeat],
                            animations: {
+                            UIView.setAnimationRepeatCount(1.5)
+                            self.nextButtonOutlet.isUserInteractionEnabled = true
                             self.nextButtonOutlet.layer.backgroundColor = UIColor.systemTeal.cgColor
                 
             })
@@ -647,6 +651,7 @@ class FilterController: UIViewController {
                                      .autoreverse,
                                      .repeat],
                            animations: {
+                            UIView.setAnimationRepeatCount(1.5)
                             self.nextButtonOutlet.layer.backgroundColor = UIColor.systemTeal.cgColor
                 
             })
@@ -671,6 +676,7 @@ class FilterController: UIViewController {
                                      .autoreverse,
                                      .repeat],
                            animations: {
+                            UIView.setAnimationRepeatCount(1.5)
                             self.nextButtonOutlet.layer.backgroundColor = UIColor.systemTeal.cgColor
                 
             })
@@ -695,6 +701,7 @@ class FilterController: UIViewController {
                                      .autoreverse,
                                      .repeat],
                            animations: {
+                            UIView.setAnimationRepeatCount(1.5)
                             self.nextButtonOutlet.layer.backgroundColor = UIColor.systemTeal.cgColor
                 
             })
@@ -719,6 +726,7 @@ class FilterController: UIViewController {
                                      .autoreverse,
                                      .repeat],
                            animations: {
+                            UIView.setAnimationRepeatCount(1.5)
                             self.nextButtonOutlet.layer.backgroundColor = UIColor.systemTeal.cgColor
                 
             })
