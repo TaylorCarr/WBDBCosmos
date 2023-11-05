@@ -11,25 +11,25 @@ import SwiftUI
 struct LoadingScreen: View {
     @State var half = false
     @State var doneLoading = false
-    
+
     var repeatingAnimation: Animation {
         Animation
             .easeInOut(duration: 1)
             .repeatCount(8)
     }
-    
-    func changeView () {
-        //loading = false
+
+    func changeView() {
+        // loading = false
     }
-    
+
     var body: some View {
-        NavigationView{
+        NavigationView {
             Button(action: {
                 print("worked")
             }) {
                 Text(verbatim: "Button")
-                }.frame(width: 200, height: 200, alignment: .center)
-        .navigationBarTitle("")
+            }.frame(width: 200, height: 200, alignment: .center)
+                .navigationBarTitle("")
 //            ZStack {
 //                if (doneLoading == false) {
 //                    Color(UIColor(named: "wbblue")!)
@@ -61,7 +61,6 @@ struct LoadingScreen: View {
 }
 
 struct test: View {
-    
     var body: some View {
         HStack {
             Text(verbatim: "no")

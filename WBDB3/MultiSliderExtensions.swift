@@ -14,7 +14,7 @@ extension CGFloat {
     }
 
     func rounded(_ step: CGFloat) -> CGFloat {
-        guard step.isNormal && isNormal else { return self }
+        guard step.isNormal, isNormal else { return self }
         return (self / step).rounded() * step
     }
 }
@@ -78,7 +78,7 @@ extension UIView {
 
 extension Array where Element: UIView {
     mutating func removeViewsStartingAt(_ index: Int) {
-        guard index >= 0 && index < count else { return }
+        guard index >= 0, index < count else { return }
         self[index ..< count].forEach { $0.removeFromSuperview() }
         removeLast(count - index)
     }
@@ -87,7 +87,7 @@ extension Array where Element: UIView {
 extension UIImageView {
     func blur(_ on: Bool) {
         if on {
-            guard nil == viewWithTag(UIImageView.blurViewTag) else { return }
+            guard viewWithTag(UIImageView.blurViewTag) == nil else { return }
             let blurImage = image?.withRenderingMode(.alwaysTemplate)
             let blurView = UIImageView(image: blurImage)
             blurView.tag = UIImageView.blurViewTag

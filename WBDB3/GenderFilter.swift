@@ -6,12 +6,12 @@
 ////  Copyright © 2019 Taylor Carr. All rights reserved.
 ////
 //
-//import SwiftUI
+// import SwiftUI
 //
-//struct GenderFilter: View {
-//    
+// struct GenderFilter: View {
+//
 //    let genders: [String] = ["MALE", "FEMALE", "OTHER", "UNKNOWN"]
-//    
+//
 //    var body: some View {
 //        HStack (spacing: 30){
 //            ForEach(genders, id: \.self) { value in
@@ -25,10 +25,10 @@
 //            }
 //        }.padding(.top, CGFloat(20))
 //    }
-//}
+// }
 //
-//struct GenderFilter_Previews: PreviewProvider {
+// struct GenderFilter_Previews: PreviewProvider {
 //    static var previews: some View {
 //        GenderFilter()
 //    }
-//}
+// }

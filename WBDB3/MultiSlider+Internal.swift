@@ -105,7 +105,7 @@ extension MultiSlider {
     func updateOuterTrackViews() {
         outerTrackViews.removeViewsStartingAt(0)
         outerTrackViews.removeAll()
-        guard nil != outerTrackColor else { return }
+        guard outerTrackColor != nil else { return }
         guard let firstThumb = thumbViews.first, let lastThumb = thumbViews.last, firstThumb != lastThumb else { return }
 
         outerTrackViews = [
@@ -184,15 +184,15 @@ extension MultiSlider {
             let length = maximumValue - startValue
             let relativeStepSize = snapStepSize / (maximumValue - minimumValue)
             var step: CGFloat = 0
-            if 0 == value.count && 1 < appendCount {
+            if value.count == 0, appendCount > 1 {
                 step = (length / CGFloat(appendCount - 1)).truncated(relativeStepSize)
             } else {
                 step = (length / CGFloat(appendCount)).truncated(relativeStepSize)
-                if 0 < value.count {
+                if value.count > 0 {
                     startValue += step
                 }
             }
-            if 0 == step { step = relativeStepSize }
+            if step == 0 { step = relativeStepSize }
             value += stride(from: startValue, through: maximumValue, by: step)
         }
         if value.count > count { // don't add "else", since prev calc may add too many values in some cases
@@ -243,7 +243,7 @@ extension MultiSlider {
 
     func layoutTrackEdge(toView: UIImageView, edge: NSLayoutConstraint.Attribute, superviewEdge: NSLayoutConstraint.Attribute) {
         removeFirstConstraint { $0.firstItem === self.trackView && ($0.firstAttribute == edge || $0.firstAttribute == superviewEdge) }
-        if nil != toView.image {
+        if toView.image != nil {
             constrain(trackView, at: edge, to: toView, at: edge.opposite, diff: edge.inwardSign * 8)
         } else {
             constrain(trackView, at: edge, to: self, at: superviewEdge)

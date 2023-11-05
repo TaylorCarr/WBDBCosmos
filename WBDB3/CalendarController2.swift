@@ -7,30 +7,28 @@
 //
 
 import Foundation
-import UIKit
 import SwiftUI
+import UIKit
 
 class CalendarController2: UIHostingController<AnyView> {
-    //@EnvironmentObject var cartInstance: CartClass
-    
+    // @EnvironmentObject var cartInstance: CartClass
+
     required init?(coder aDecoder: NSCoder) {
-        
-        //super.init(coder: aDecoder, rootView:
-        //CalendarView())
-        
+        // super.init(coder: aDecoder, rootView:
+        // CalendarView())
+
         super.init(coder: aDecoder, rootView:
-           AnyView(Controller().environmentObject(CartClass())))
-        
+            AnyView(Controller().environmentObject(CartClass())))
     }
-    
+
     override func viewDidLoad() {
-    super.viewDidLoad()
-        //let temp = CalendarView()
+        super.viewDidLoad()
+        // let temp = CalendarView()
         let value = UIInterfaceOrientation.portrait.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
-        //navigationController?.setNavigationBarHidden(true, animated: true)
-        self.navigationController?.isNavigationBarHidden = true
-        
+        // navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.isNavigationBarHidden = true
+
 //        let back = UIBarButtonItem(image: UIImage(named: "filter"), style: .plain, target: self, action: #selector(goToFilters))
 //        let sort = UIBarButtonItem(image: UIImage(named: "sort"), style: .plain, target: self, action: #selector(sortList))
 //        let cart = UIBarButtonItem(image: UIImage(named: "shoppingCart"), style: .plain, target: self, action: #selector(goToCart))
@@ -44,17 +42,15 @@ class CalendarController2: UIHostingController<AnyView> {
 //        headerText.font = UIFont(name: "GillSans-Bold", size: CGFloat(25))
 //        headerText.textColor = UIColor(named: "wbblue")!
 //        navigationItem.titleView = headerText
-
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
-        //self.navigationController?.isNavigationBarHidden = true
-        //self.navigationController?.navigationItem.backBarButtonItem = nil
+        // self.navigationController?.isNavigationBarHidden = true
+        // self.navigationController?.navigationItem.backBarButtonItem = nil
     }
-    
-    
+
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
     }
@@ -62,21 +58,20 @@ class CalendarController2: UIHostingController<AnyView> {
     override var shouldAutorotate: Bool {
         return true
     }
-    
+
     @objc func goToCart() {
-        performSegue(withIdentifier: "showCartSegue", sender: (Any).self)
-        
+        performSegue(withIdentifier: "showCartSegue", sender: Any.self)
     }
-    
-    @objc func goToFilters () {
-        self.navigationController?.popToViewController((self.navigationController?.viewControllers[0]) as! FilterController, animated: true)
+
+    @objc func goToFilters() {
+        navigationController?.popToViewController((navigationController?.viewControllers[0]) as! FilterController, animated: true)
     }
-    
-    @objc func sortList(sender: Any) {
-        //sortArray()
-        
-        //temp.sortArray()
-        
+
+    @objc func sortList(sender _: Any) {
+        // sortArray()
+
+        // temp.sortArray()
+
 //        let popoverFrame = CGRect(origin: self.view.frame.origin, size: CGSize(width: 250, height: 50))
 //        let popoverVC = UIViewController()
 //        let popoverView = UIView(frame: popoverFrame)
@@ -95,9 +90,8 @@ class CalendarController2: UIHostingController<AnyView> {
 //        var optionsTable = UITableView(frame: popoverFrame)
 //        for option in options {
 //            optionsTable.cellForRow(at: option.in) = option.name
-        }
-        
-        
+    }
+
 //        // Specify the anchor point for the popover.
 //        popoverVC.popoverPresentationController?.delegate = self as? UIPopoverPresentationControllerDelegate
 //        popoverVC.popoverPresentationController?.sourceView = sender as! UIView
@@ -106,24 +100,21 @@ class CalendarController2: UIHostingController<AnyView> {
 //        // Present the view controller (in a popover).
 //        self.present(popoverVC, animated: true) // The popover is visible.
 //    }
-//}
+    // }
 //
-//class sortTableViewController: UITableViewController {
+    // class sortTableViewController: UITableViewController {
 //    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //        <#code#>
 //    }
-//}
+    // }
 
-
-
-
-//struct CalendarView_Previews: PreviewProvider {
+    // struct CalendarView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        CalendarView()
 //    }
-//}
+    // }
 //
-//struct movies: Identifiable {
+    // struct movies: Identifiable {
 //    let id: Int
 //    let poster: UIImage?
 //    let title: String
@@ -132,23 +123,23 @@ class CalendarController2: UIHostingController<AnyView> {
 //    var startDate: Date = Date(timeIntervalSince1970: 1538377200000)
 //    var endDate: Date = Date(timeIntervalSince1970: 1609487999000)
 //
-//}
+    // }
 //
-//struct filterSettings {
+    // struct filterSettings {
 //    var genre: String?
 //    var region: String?
 //    var distrbution: String?
-//}
+    // }
 //
-//let settings = filterSettings()
+    // let settings = filterSettings()
 //
-//let genres: [circles] = [circles(title: "All"), circles(title: "Action"), circles(title: "Children & Family"), circles(title:"Comedy"), circles(title: "Documentary"), circles(title: "Drama"), circles(title: "Horror"), circles(title: "Romance"), circles(title: "Sci-fi"), circles(title:"Thriller")]
+    // let genres: [circles] = [circles(title: "All"), circles(title: "Action"), circles(title: "Children & Family"), circles(title:"Comedy"), circles(title: "Documentary"), circles(title: "Drama"), circles(title: "Horror"), circles(title: "Romance"), circles(title: "Sci-fi"), circles(title:"Thriller")]
 //
-////let genres = ["All", "Action", "Children & Family", "Comedy", "Documentary", "Drama", "Horror", "Romance", "Sci-fi", "Thriller"]
+    ////let genres = ["All", "Action", "Children & Family", "Comedy", "Documentary", "Drama", "Horror", "Romance", "Sci-fi", "Thriller"]
 //
-//var selectedGenre = "All"
+    // var selectedGenre = "All"
 //
-//func assignDates() {
+    // func assignDates() {
 //    //var movieArray = movieArray
 //    // @Binding var movieArray: [movies]
 //
@@ -160,18 +151,18 @@ class CalendarController2: UIHostingController<AnyView> {
 //        formatter.dateFormat = "MM yyyy"
 //        return formatter
 //    }
-////
-////    print(movieArray[0].title)
-////
-////    movieArray[0].startDate = dateFormatter.date(from: "10 2019")
-////    movieArray[0].startDate = dateFormatter.date(from: "10 2020")
-////    movieArray[2].startDate = dateFormatter.date(from: "12 2018")
-////    movieArray[2].startDate = dateFormatter.date(from: "12 2019")
-////    movieArray[3].startDate = dateFormatter.date(from: "10 2017")
-////    movieArray[3].startDate = dateFormatter.date(from: "10 2019")
-//}
+    ////
+    ////    print(movieArray[0].title)
+    ////
+    ////    movieArray[0].startDate = dateFormatter.date(from: "10 2019")
+    ////    movieArray[0].startDate = dateFormatter.date(from: "10 2020")
+    ////    movieArray[2].startDate = dateFormatter.date(from: "12 2018")
+    ////    movieArray[2].startDate = dateFormatter.date(from: "12 2019")
+    ////    movieArray[3].startDate = dateFormatter.date(from: "10 2017")
+    ////    movieArray[3].startDate = dateFormatter.date(from: "10 2019")
+    // }
 //
-//struct CalendarView: View {
+    // struct CalendarView: View {
 //
 //
 //    @State var showFilters = false
@@ -234,9 +225,9 @@ class CalendarController2: UIHostingController<AnyView> {
 //             .padding(.horizontal, 100)
 //        }
 //    }
-//}
+    // }
 //
-//struct movieView : View {
+    // struct movieView : View {
 //    let movie: movies
 //
 //    var body: some View {
@@ -262,16 +253,16 @@ class CalendarController2: UIHostingController<AnyView> {
 //        }
 //    }
 //    }
-//}
+    // }
 //
-//func calcDate (movie: movies)-> Bool {
+    // func calcDate (movie: movies)-> Bool {
 //    if (movie.startDate < Date() && movie.endDate > Date()) {
 //        return true
 //    }
 //    else {
 //        return false
 //    }
-//}
+    // }
 
 //    struct filtersView : View {
 //        @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -364,8 +355,4 @@ class CalendarController2: UIHostingController<AnyView> {
 //        var id = UUID()
 //        let title: String
 //    }
-
-
 }
-    
-

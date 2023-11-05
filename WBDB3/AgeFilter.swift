@@ -6,12 +6,12 @@
 ////  Copyright © 2019 Taylor Carr. All rights reserved.
 ////
 //
-//import SwiftUI
+// import SwiftUI
 //
-//struct AgeFilter: View {
-//    
+// struct AgeFilter: View {
+//
 //    let ageRanges: [String] = ["0-12", "13-24", "25-49", "50+"]
-//    
+//
 //    var body: some View {
 //        HStack (spacing: 30){
 //            ForEach(ageRanges, id: \.self) { value in
@@ -23,13 +23,13 @@
 //                    Text(value)
 //                }
 //            }
-//            
+//
 //        }.padding(.top, CGFloat(20))
 //    }
-//}
+// }
 //
-//struct AgeFilter_Previews: PreviewProvider {
+// struct AgeFilter_Previews: PreviewProvider {
 //    static var previews: some View {
 //        AgeFilter()
 //    }
-//}
+// }

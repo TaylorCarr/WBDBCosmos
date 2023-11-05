@@ -8,7 +8,7 @@
 import UIKit
 
 extension MultiSlider: UIGestureRecognizerDelegate {
-    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    public func gestureRecognizer(_: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith _: UIGestureRecognizer) -> Bool {
         return true
     }
 
@@ -35,7 +35,7 @@ extension MultiSlider: UIGestureRecognizerDelegate {
         // snap translation to stepSizeInView
         if snapStepSize > 0 {
             let translationSnapped = panGesture.translation(in: slideView).coordinate(in: orientation).rounded(stepSizeInView)
-            if 0 == Int(translationSnapped) { return }
+            if Int(translationSnapped) == 0 { return }
             panGesture.setTranslation(.zero, in: slideView)
         }
 
@@ -92,7 +92,7 @@ extension MultiSlider: UIGestureRecognizerDelegate {
         positionThumbView(draggedThumbIndex)
         if draggedThumbIndex < valueLabels.count {
             updateValueLabel(draggedThumbIndex)
-            if isValueLabelRelative && draggedThumbIndex + 1 < valueLabels.count {
+            if isValueLabelRelative, draggedThumbIndex + 1 < valueLabels.count {
                 updateValueLabel(draggedThumbIndex + 1)
             }
         }
@@ -107,7 +107,7 @@ extension MultiSlider: UIGestureRecognizerDelegate {
             let thumbCoordinate = thumbViews[i].center.coordinate(in: orientation)
             let distance = abs(pointCoordinate - thumbCoordinate)
             if distance > minimumDistance { break }
-            if i > 0 && closest == i - 1 && thumbViews[i].center == thumbViews[i - 1].center { // overlapping thumbs
+            if i > 0, closest == i - 1, thumbViews[i].center == thumbViews[i - 1].center { // overlapping thumbs
                 let greaterSign: CGFloat = orientation == .vertical ? -1 : 1
                 if greaterSign * thumbCoordinate < greaterSign * pointCoordinate {
                     closest = i

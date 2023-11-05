@@ -7,41 +7,36 @@
 //
 
 import Foundation
-import UIKit
 import SwiftUI
+import UIKit
 
 struct Dial {
     var id = UUID()
     var radius: Double = 100
     var i: Double
-    //var x: CGPoint?
-    
+    // var x: CGPoint?
+
     func getPoint() -> CGPoint {
         return CGPoint(x: cos(i) * radius, y: sin(i) * radius)
     }
 }
 
 struct DialPicker: View {
-    
     var i: Double = 10
     var radius: Double = 100
     var x: CGPoint?
-        
-        
-    //x = cos(i) * radius
-    
+
+    // x = cos(i) * radius
+
     var body: some View {
-        
-        
         VStack {
             Group {
                 HStack {
-                  Circle()
-                     
+                    Circle()
                 }
             }.frame(alignment: .top)
             Divider()
-            
+
             Group {
                 Circle()
                     .stroke(Color.red, lineWidth: CGFloat(4))
@@ -50,23 +45,20 @@ struct DialPicker: View {
 //                    Circle()
 //                    .offset(Dial(i: index).getPoint())
 //                }
-                //generateCircles()
-                
-                
-                
+                // generateCircles()
             }
         }
     }
 }
 
-//func generateCircles() {
+// func generateCircles() {
 //    let min = -1
 //    let max = 1
-//    
+//
 //    let step = ((max - min) / genres.count)
-//    
+//
 //    for i in stride(from: min, to: max, by: step) {
-//        
+//
 //    }
 //    //ZStack {
 ////        ForEach(genres) { index in
@@ -78,7 +70,7 @@ struct DialPicker: View {
 ////
 ////    }
 //    //}
-//}
+// }
 
 struct DialPicker_Previews: PreviewProvider {
     static var previews: some View {

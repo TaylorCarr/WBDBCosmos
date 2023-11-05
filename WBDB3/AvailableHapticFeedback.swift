@@ -38,7 +38,7 @@ open class AvailableHapticFeedback {
 
     @available(iOS 10.0, *)
     var feedbackGenerator: UIFeedbackGenerator & AvailableHapticFeedbackGenerator {
-        if nil == _anyFeedbackGenerator {
+        if _anyFeedbackGenerator == nil {
             createFeedbackGenerator()
         }
         // swiftlint:disable force_cast force_unwrapping
@@ -71,14 +71,14 @@ protocol AvailableHapticFeedbackGenerator {
 
 @available(iOS 10.0, *)
 extension UISelectionFeedbackGenerator: AvailableHapticFeedbackGenerator {
-    func generate(style: AvailableHapticFeedback.Style) {
+    func generate(style _: AvailableHapticFeedback.Style) {
         selectionChanged()
     }
 }
 
 @available(iOS 10.0, *)
 extension UIImpactFeedbackGenerator: AvailableHapticFeedbackGenerator {
-    func generate(style: AvailableHapticFeedback.Style) {
+    func generate(style _: AvailableHapticFeedback.Style) {
         impactOccurred()
     }
 }

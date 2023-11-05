@@ -10,14 +10,14 @@ import SwiftUI
 
 struct StatusView: View {
     var body: some View {
-        VStack(alignment: .leading){
+        VStack(alignment: .leading) {
             Text("Available/Sold/Heldback").font(.headline).frame(alignment: .center)
             Spacer()
             Text("Deal ID: ").font(.headline)
             Text("Dates: ").font(.headline)
             Text("Licensee: ").font(.headline)
             Text("Exclusivity: ").font(.headline)
-        }.frame(width: CGFloat(250), height: CGFloat(150), alignment: .center)//.background(Color.blue)
+        }.frame(width: CGFloat(250), height: CGFloat(150), alignment: .center) // .background(Color.blue)
     }
 }
 

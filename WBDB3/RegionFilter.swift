@@ -6,13 +6,13 @@
 ////  Copyright © 2019 Taylor Carr. All rights reserved.
 ////
 //
-//import SwiftUI
+// import SwiftUI
 //
-//struct RegionFilter: View {
-//    
+// struct RegionFilter: View {
+//
 //    let regions: [String] = ["ASIA", "GSE", "LATAM", "OCEANA", "SPAIN"]
 //    @State var height: CGFloat = 100
-//    
+//
 //    var body: some View {
 //        HStack (spacing: 30){
 //            ForEach(regions, id: \.self) { value in
@@ -27,24 +27,24 @@
 //            }
 //        }.padding(.top, CGFloat(20))
 //    }
-//    
+//
 //    func variableHeight() -> CGFloat? {
 //        height = CGFloat.random(in: 0...200)
-//        
+//
 //        for i in 0...Int(height) {
 //            return CGFloat(i)
 //        }
 //        return nil
 //    }
-//}
+// }
 //
-//struct RegionFilter_Previews: PreviewProvider {
+// struct RegionFilter_Previews: PreviewProvider {
 //    static var previews: some View {
 //        RegionFilter()
 //    }
-//}
+// }
 //
-//struct CapsuleBar: View {
+// struct CapsuleBar: View {
 //    var value: Int
 //    var maxValue: Int
 //    var width: CGFloat
@@ -52,7 +52,7 @@
 //    //var capsuleColor: ColorRGB
 //    var body: some View {
 //        VStack {
-//            
+//
 //            Text("\(value)")
 //            ZStack(alignment: .bottom) {
 //                Capsule()
@@ -66,8 +66,8 @@
 //                    .frame(width: width, height: CGFloat(value) / CGFloat(maxValue) * 400)
 //                    .animation(.easeOut(duration: 0.5))
 //            }
-//            
+//
 //            Text("\(valueName)")
 //        }
 //    }
-//}
+// }

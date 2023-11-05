@@ -7,22 +7,22 @@
 //
 
 import Foundation
-import UIKit
 import SwiftUI
+import UIKit
 
-//class CartController: UIHostingController<CartView> {
+// class CartController: UIHostingController<CartView> {
 //    required init?(coder aDecoder: NSCoder) {
-//    
+//
 //        super.init(coder: aDecoder, rootView: //CartView(cart: cart))
-//        
-//    
+//
+//
 ////        let headerText = UILabel(frame: CGRect(x: 0, y: 0, width: 30, height: 15))
 ////        headerText.text = "WARNER BROS."
 ////        headerText.font = UIFont(name: "GillSans-Bold", size: CGFloat(25))
 ////        headerText.textColor = UIColor(named: "wbblue")!
 ////        navigationItem.titleView = headerText
 //    }
-//    
+//
 //    override func viewDidLoad() {
 //        let headerText = UILabel(frame: CGRect(x: 0, y: 0, width: 30, height: 15))
 //        headerText.text = "WARNER BROS."
@@ -30,4 +30,4 @@ import SwiftUI
 //        headerText.textColor = UIColor(named: "wbblue")!
 //        navigationItem.titleView = headerText
 //    }
-//}
+// }
